@@ -1,0 +1,29 @@
+<div *ngIf="customers && customers.length > 0; else noentries">
+  <mat-card *ngFor="let customer of customers">
+    <mat-card-header>
+        <img mat-card-avatar [src]="getAvatar(customer)">
+      <mat-card-title class="customer-list-title"><a href="" class="mat-typography">{{customer.firstName + ' ' + customer.lastName}}</a></mat-card-title>
+        <mat-card-subtitle>{{customer.address}}</mat-card-subtitle>
+        <div class="card-header-space-between">
+
+        </div>
+        <div>
+          <button mat-button (click)="removeCustomer(customer)"><mat-icon>delete</mat-icon></button>
+        </div>
+    </mat-card-header>
+    <mat-card-content>
+
+      <div class="customer-list-detail">
+        <div><mat-icon>perm_identity</mat-icon> <span>Customer-ID: {{customer.id}}</span></div>
+        <div><mat-icon>phone</mat-icon> <span>Phone: {{customer.phoneNumber ? customer.phoneNumber : '-' }}</span></div>
+        <div><mat-icon>mail_outline</mat-icon> <span>E-Mail: {{customer.eMail ? customer.eMail : '-'}}</span></div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+<ng-template #noentries>
+  <span>No Customers yet</span>
+</ng-template>
+
+<button mat-fab color="accent" class="mat-add-fab-button" (click)="openDialog()"><mat-icon>add</mat-icon></button>
+
