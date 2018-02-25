@@ -1,0 +1,33 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-button class="app-menu-icon" (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+    <span>Car Rent</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-progress-bar *ngIf="loading"
+  color="accent"
+  mode="indeterminate">
+</mat-progress-bar>
+
+<mat-sidenav-container class="app-sidenav-container">
+  <mat-sidenav #sidenav mode="side" class="app-sidenav" [opened]="true">
+    <section class="mat-typography">
+      <ul class="app-sidenav-items">
+        <li><a href="" class="selected"><mat-icon>supervisor_account</mat-icon><span>Customers</span></a></li>
+        <li><a href=""><mat-icon>directions_car</mat-icon><span>Cars</span></a></li>
+        <li><a href=""><mat-icon>insert_invitation</mat-icon><span>Reservations</span></a></li>
+        <li><a href=""><mat-icon>assignment</mat-icon><span>Contracts</span></a></li>
+        <li><a href=""><mat-icon>settings</mat-icon><span>Settings</span></a></li>
+      </ul>
+    </section>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="app-sidenav-content">
+    <section class="mat-typography">
+      <router-outlet>
+
+      </router-outlet>
+    </section>
+  </mat-sidenav-content>
+</mat-sidenav-container>
