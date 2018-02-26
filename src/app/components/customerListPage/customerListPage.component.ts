@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {CustomerService, GravatarService} from '../../services';
+import {CustomerService, UnicornService} from '../../services';
 import {Customer} from '../../model';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {NewCustomerDialogComponent} from '../newCustomerDialog/newCustomerDialog.component';
@@ -13,7 +13,7 @@ export class CustomerListPageComponent implements OnInit {
   public customers: Customer[];
   public loading = true;
   constructor(private _customerService: CustomerService,
-              private _gravatar: GravatarService,
+              private _gravatar: UnicornService,
               private _dialog: MatDialog,
               private _snackBar: MatSnackBar) {
   }
@@ -27,7 +27,7 @@ export class CustomerListPageComponent implements OnInit {
   }
 
   public getAvatar(c: Customer): string {
-    return this._gravatar.getAvatarFromString(c.firstName + c.lastName + c.id);
+    return this._gravatar.getAvatarFromString(c.firstName + c.lastName + c.id, 32);
   }
 
   public removeCustomer(c: Customer): void {

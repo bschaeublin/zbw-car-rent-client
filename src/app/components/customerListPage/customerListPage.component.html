@@ -2,14 +2,8 @@
   <mat-card *ngFor="let customer of customers">
     <mat-card-header>
         <img mat-card-avatar [src]="getAvatar(customer)">
-      <mat-card-title class="customer-list-title"><a href="" class="mat-typography">{{customer.firstName + ' ' + customer.lastName}}</a></mat-card-title>
+      <mat-card-title class="customer-list-title"><span class="mat-typography">{{customer.firstName + ' ' + customer.lastName}}</span></mat-card-title>
         <mat-card-subtitle>{{customer.address}}</mat-card-subtitle>
-        <div class="card-header-space-between">
-
-        </div>
-        <div>
-          <button mat-button (click)="removeCustomer(customer)"><mat-icon>delete</mat-icon></button>
-        </div>
     </mat-card-header>
     <mat-card-content>
 
@@ -19,6 +13,14 @@
         <div><mat-icon>mail_outline</mat-icon> <span>E-Mail: {{customer.eMail ? customer.eMail : '-'}}</span></div>
       </div>
     </mat-card-content>
+    <mat-card-actions>
+      <div class="row">
+        <div class="col-xs-12">
+          <a mat-button color="primary" [routerLink]="'/customers/' + customer.id"><mat-icon>open_in_browser</mat-icon> VIEW DETAIL</a>
+          <button mat-button color="warn" (click)="removeCustomer(customer)"><mat-icon>delete</mat-icon>DELETE</button>
+        </div>
+      </div>
+    </mat-card-actions>
   </mat-card>
 </div>
 <ng-template #noentries>

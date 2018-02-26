@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import {AppComponent, CustomerListPageComponent, NewCustomerDialogComponent, NotFoundPageComponent} from './components';
+import {
+  AppComponent, CustomerDetailPageComponent, CustomerListPageComponent, NewCustomerDialogComponent,
+  NotFoundPageComponent
+} from './components';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './modules/material/material.module';
 import {RouterModule, Routes} from '@angular/router';
@@ -14,7 +17,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 const appRoutes: Routes = [
   {
     path: 'customers/:id',
-    component: NotFoundPageComponent },
+    component: CustomerDetailPageComponent },
   {
     path: 'customers',
     component: CustomerListPageComponent,

@@ -14,7 +14,7 @@
   <mat-sidenav #sidenav mode="side" class="app-sidenav" [opened]="true">
     <section class="mat-typography">
       <ul class="app-sidenav-items">
-        <li><a href="" class="selected"><mat-icon>supervisor_account</mat-icon><span>Customers</span></a></li>
+        <li><a [routerLink]="'customers'" class="selected"><mat-icon>supervisor_account</mat-icon><span>Customers</span></a></li>
         <li><a href=""><mat-icon>directions_car</mat-icon><span>Cars</span></a></li>
         <li><a href=""><mat-icon>insert_invitation</mat-icon><span>Reservations</span></a></li>
         <li><a href=""><mat-icon>assignment</mat-icon><span>Contracts</span></a></li>

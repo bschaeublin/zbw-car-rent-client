@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {CustomerService, GravatarService, ValidationService} from '../../services';
+import {CustomerService, UnicornService, ValidationService} from '../../services';
 import {Customer} from '../../model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatDialogRef} from '@angular/material';

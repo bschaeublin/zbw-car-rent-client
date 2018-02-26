@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import {
   MatAutocompleteModule,
   MatButtonModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatDialogModule, MatFormFieldModule,
+  MatGridListModule,
   MatIconModule,
   MatInputModule, MatProgressBarModule, MatProgressSpinnerModule,
   MatSelectModule, MatSidenavModule, MatSnackBarModule,
@@ -22,6 +23,7 @@ import {
     MatIconModule,
     MatAutocompleteModule,
     MatDialogModule,
+    MatGridListModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
     MatSelectModule,
@@ -39,6 +41,7 @@ import {
     MatCheckboxModule,
     MatDialogModule,
     MatIconModule,
+    MatGridListModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,

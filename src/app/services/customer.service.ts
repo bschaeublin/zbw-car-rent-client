@@ -14,11 +14,19 @@ export class CustomerService {
     return this._http.get<Customer[]>(this._apiUrl);
   }
 
+  public getCustomer(id: number): Observable<Customer> {
+    return this._http.get<Customer>(this._apiUrl + '/' + id);
+  }
+
   public addCustomer(customer: Customer): Observable<Customer> {
     return this._http.post<Customer>(this._apiUrl, customer);
   }
 
   public removeCustomer(customer: Customer): Observable<void> {
     return this._http.delete<void>(this._apiUrl + '/' + customer.id);
+  }
+
+  public updateCustomer(customer: Customer): Observable<void> {
+    return this._http.put<void>(this._apiUrl + '/' + customer.id, customer);
   }
 }
