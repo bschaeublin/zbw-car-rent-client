@@ -7,13 +7,13 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-3 col-xs-12">
+        <div class="col-md-2 col-xs-12">
           <img [src]="getAvatar(customer)" width="128" height="128">
           <div class="contact-detail-box">
             <div><mat-icon>perm_identity</mat-icon> <span>Customer-ID: {{customer.id}}</span></div>
           </div>
         </div>
-        <div class="col-md-9 col-xs-12">
+        <div class="col-md-10 col-xs-12">
           <form class="customer-detail-form" [formGroup]="newCustomerForm">
             <mat-form-field>
               <input cdkFocusInitial matInput placeholder="firstname *" formControlName="firstName">
