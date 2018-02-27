@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import {
   AppComponent, CarsListPageComponent, CustomerDetailPageComponent, CustomerListPageComponent,
   NewCustomerDialogComponent,
-  NotFoundPageComponent, SettingsPageComponent
+  NotFoundPageComponent, CarBrandSettingsComponent
 } from './components';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './modules/material/material.module';
@@ -32,7 +32,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'settings',
-    component: SettingsPageComponent,
+    component: CarBrandSettingsComponent,
   },
   {
     path: '',

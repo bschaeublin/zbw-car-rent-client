@@ -1,0 +1,64 @@
+<h2>Car Brands</h2>
+<div *ngIf="carBrands && carBrands.length > 0; else nobrands">
+  <div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="carBrands" matSort>
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
+        <mat-cell *matCellDef="let b"> {{b.id}} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
+        <mat-cell *matCellDef="let b">
+          <span *ngIf="!b.edit">{{b.title}}</span>
+          <span *ngIf="b.edit">
+            <mat-form-field>
+              <input matInput placeholder="Title *" [(ngModel)]="b.title">
+              <mat-error *ngIf="!b.title || b.title.trim().length == 0">
+                Title is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </span>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>  </mat-header-cell>
+        <mat-cell *matCellDef="let b">
+          <button *ngIf="!b.edit" (click)="toggleEdit(b)" mat-button class="mat-flat-button"><mat-icon>mode_edit</mat-icon></button>
+          <button *ngIf="b.edit" (click)="updateBrand(b)" [disabled]="!b.title || b.title.trim().length == 0"  mat-button class="mat-flat-button"><mat-icon>save</mat-icon></button>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="remove">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>  </mat-header-cell>
+        <mat-cell *matCellDef="let b"><button mat-button color="warn" (click)="removeBrand(b)"><mat-icon>delete</mat-icon></button></mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="['id', 'title', 'edit', 'remove' ]"></mat-header-row>
+      <mat-row *matRowDef="let b; columns: ['id', 'title', 'edit', 'remove' ];"></mat-row>
+    </mat-table>
+  </div>
+</div>
+<ng-template #nobrands>
+  <span>No Car Brands yet</span>
+</ng-template>
+
+<form [formGroup]="newCarBrandsForm" class="add-new-container">
+  <mat-form-field>
+    <input cdkFocusInitial matInput placeholder="Title *" formControlName="title">
+    <mat-error *ngIf="newCarBrandsForm.hasError('required', 'title')">
+      Title is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-button color="accent" (click)="addBrand()">ADD NEW BRAND</button>
+</form>
+
+
+

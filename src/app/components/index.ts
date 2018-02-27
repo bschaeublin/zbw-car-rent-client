@@ -5,3 +5,5 @@ export * from './newCustomerDialog/newCustomerDialog.component';
 export * from './customerDetailPage/customerDetailPage.component';
 export * from './carsListPage/carsListPage.component';
 export * from './settingsPage/settingsPage.component';
+export * from './settingsPage/carBrandSettings/carBrandSettings.component';
+export * from './settingsPage/carTypesSettings/carTypesSettings.component';

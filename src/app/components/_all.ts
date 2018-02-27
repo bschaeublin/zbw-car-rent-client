@@ -5,6 +5,8 @@ import {NewCustomerDialogComponent} from './newCustomerDialog/newCustomerDialog.
 import {CustomerDetailPageComponent} from './customerDetailPage/customerDetailPage.component';
 import {CarsListPageComponent} from './carsListPage/carsListPage.component';
 import {SettingsPageComponent} from './settingsPage/settingsPage.component';
+import {CarBrandSettingsComponent} from './settingsPage/carBrandSettings/carBrandSettings.component';
+import {CarTypesSettingsComponent} from './settingsPage/carTypesSettings/carTypesSettings.component';
 
 export const ALL_COMPONENTS = [
   AppComponent,
@@ -13,5 +15,7 @@ export const ALL_COMPONENTS = [
   NewCustomerDialogComponent,
   CustomerDetailPageComponent,
   CarsListPageComponent,
+  CarTypesSettingsComponent,
   SettingsPageComponent,
+  CarBrandSettingsComponent,
 ];
