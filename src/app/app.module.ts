@@ -2,8 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import {
-  AppComponent, CustomerDetailPageComponent, CustomerListPageComponent, NewCustomerDialogComponent,
-  NotFoundPageComponent
+  AppComponent, CarsListPageComponent, CustomerDetailPageComponent, CustomerListPageComponent,
+  NewCustomerDialogComponent,
+  NotFoundPageComponent, SettingsPageComponent
 } from './components';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './modules/material/material.module';
@@ -21,6 +22,17 @@ const appRoutes: Routes = [
   {
     path: 'customers',
     component: CustomerListPageComponent,
+  },
+  {
+    path: 'cars/:id',
+    component: NotFoundPageComponent },
+  {
+    path: 'cars',
+    component: CarsListPageComponent,
+  },
+  {
+    path: 'settings',
+    component: SettingsPageComponent,
   },
   {
     path: '',

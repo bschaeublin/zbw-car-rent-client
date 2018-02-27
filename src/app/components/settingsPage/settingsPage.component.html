@@ -1,0 +1,38 @@
+<h2>Car Brands</h2>
+<div *ngIf="carBrands && carBrands.length > 0; else noentries">
+  <div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="carBrands" matSort>
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
+        <mat-cell *matCellDef="let b"> {{b.id}} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
+        <mat-cell *matCellDef="let b"> {{b.title}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="['id', 'title' ]"></mat-header-row>
+      <mat-row *matRowDef="let b; columns: ['id', 'title' ];"></mat-row>
+    </mat-table>
+  </div>
+</div>
+<ng-template #noentries>
+  <span>No Car Brands yet</span>
+</ng-template>
+
+<form [formGroup]="newCarBrandsForm">
+  <mat-form-field>
+    <input cdkFocusInitial matInput placeholder="Title *" formControlName="title">
+    <mat-error *ngIf="newCarBrandsForm.hasError('required', 'title')">
+      Title is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+</form>
+<button mat-raised-button color="accent" (click)="addBrand()">ADD NEW BRAND</button>
+
+
+

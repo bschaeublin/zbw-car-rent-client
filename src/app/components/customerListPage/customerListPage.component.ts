@@ -40,8 +40,10 @@ export class CustomerListPageComponent implements OnInit {
   public openDialog() {
     const dialogRef = this._dialog.open(NewCustomerDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
-      this.customers.push(result);
-      this._snackBar.open('added new customer: ' + result.firstName + ' ' + result.lastName, null, { duration: 3000 });
+      if (result) {
+        this.customers.push(result);
+        this._snackBar.open('added new customer: ' + result.firstName + ' ' + result.lastName, null, { duration: 3000 });
+      }
     });
   }
 }
