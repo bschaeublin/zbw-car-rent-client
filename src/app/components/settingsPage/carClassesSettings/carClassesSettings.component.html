@@ -1,7 +1,7 @@
-<h2>Car Types</h2>
-<div *ngIf="carTypes && carTypes.length > 0; else notypes">
+<h2>Car Classes</h2>
+<div *ngIf="carClasses && carClasses.length > 0; else noclasses">
   <div class="example-container mat-elevation-z8">
-    <mat-table #table [dataSource]="carTypes" matSort>
+    <mat-table #table [dataSource]="carClasses" matSort>
 
       <!-- Position Column -->
       <ng-container matColumnDef="id">
@@ -26,11 +26,28 @@
       </ng-container>
 
       <!-- Name Column -->
+      <ng-container matColumnDef="cost">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Cost </mat-header-cell>
+        <mat-cell *matCellDef="let b">
+          <span *ngIf="!b.edit">{{b.cost | number : '1.2'}}&nbsp;$</span>
+          <span *ngIf="b.edit">
+            <mat-form-field>
+              <input matInput type="number" placeholder="Cost *" [(ngModel)]="b.cost">
+              <span matSuffix>$&nbsp;</span>
+              <mat-error *ngIf="!b.cost">
+                Cost is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </span>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
       <ng-container matColumnDef="edit">
         <mat-header-cell *matHeaderCellDef mat-sort-header>  </mat-header-cell>
         <mat-cell *matCellDef="let b">
           <button *ngIf="!b.edit" (click)="toggleEdit(b)" mat-button class="mat-flat-button"><mat-icon>mode_edit</mat-icon></button>
-          <button *ngIf="b.edit" (click)="updateType(b)" [disabled]="!b.title || b.title.trim().length == 0" mat-button class="mat-flat-button"><mat-icon>save</mat-icon></button>
+          <button *ngIf="b.edit" (click)="updateClass(b)" [disabled]="!b.title || b.title.trim().length == 0" mat-button class="mat-flat-button"><mat-icon>save</mat-icon></button>
         </mat-cell>
       </ng-container>
 
@@ -40,28 +57,36 @@
         <mat-cell *matCellDef="let b"><button mat-button color="warn" (click)="removeType(b)"><mat-icon>delete</mat-icon></button></mat-cell>
       </ng-container>
 
-      <mat-header-row *matHeaderRowDef="['id', 'title', 'edit', 'remove' ]"></mat-header-row>
-      <mat-row *matRowDef="let b; columns: ['id', 'title', 'edit', 'remove' ];"></mat-row>
+      <mat-header-row *matHeaderRowDef="['id', 'title', 'cost', 'edit', 'remove' ]"></mat-header-row>
+      <mat-row *matRowDef="let b; columns: ['id', 'title', 'cost', 'edit', 'remove' ];"></mat-row>
     </mat-table>
   </div>
 </div>
-<ng-template #notypes>
-  <span>No Car Types yet</span>
+<ng-template #noclasses>
+  <span>No Car Classes yet</span>
 </ng-template>
 
-
-<form [formGroup]="newCarTypeForm" class="add-new-container-type">
+<form [formGroup]="newCarClassForm" class="add-new-container-class">
   <div class="row">
     <div class="col-md col-xs-12">
       <mat-form-field>
         <input cdkFocusInitial matInput placeholder="Title *" formControlName="title">
-        <mat-error *ngIf="newCarTypeForm.hasError('required', 'title')">
+        <mat-error *ngIf="newCarClassForm.hasError('required', 'title')">
           Title is <strong>required</strong>
         </mat-error>
       </mat-form-field>
     </div>
-    <div class="col-md col-xs-12 end-md start-xs">
-      <button mat-button color="accent" (click)="addType()">ADD NEW TYPE</button>
+    <div class="col-md-2 col-xs-12">
+      <mat-form-field>
+        <input cdkFocusInitial matInput type="number" placeholder="Cost *" formControlName="cost">
+        <span matSuffix>$&nbsp;</span>
+        <mat-error *ngIf="newCarClassForm.hasError('required', 'cost')">
+          Cost is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-md-2 col-xs-12 end-md start-xs">
+      <button mat-button color="accent" (click)="addClass()">ADD NEW CLASS</button>
     </div>
   </div>
 </form>

@@ -7,6 +7,7 @@ import {CarsListPageComponent} from './carsListPage/carsListPage.component';
 import {SettingsPageComponent} from './settingsPage/settingsPage.component';
 import {CarBrandSettingsComponent} from './settingsPage/carBrandSettings/carBrandSettings.component';
 import {CarTypesSettingsComponent} from './settingsPage/carTypesSettings/carTypesSettings.component';
+import {CarClassSettingsComponent} from './settingsPage/carClassesSettings/carClassesSettings.component';
 
 export const ALL_COMPONENTS = [
   AppComponent,
@@ -18,4 +19,5 @@ export const ALL_COMPONENTS = [
   CarTypesSettingsComponent,
   SettingsPageComponent,
   CarBrandSettingsComponent,
+  CarClassSettingsComponent
 ];

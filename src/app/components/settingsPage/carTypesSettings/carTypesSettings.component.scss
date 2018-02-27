@@ -32,12 +32,13 @@ mat-cell {
   flex: 0 0 50px;
 }
 
-.add-new-container {
-  margin-top: 15px;
+.add-new-container-type {
+  margin-top: 20px;
   mat-form-field {
-    width: 50%;
+    width: 100%;
   }
   button {
-    margin-left:10px;
+    margin-top: 5px;
   }
+  margin-bottom: 10px;
 }

@@ -14,6 +14,7 @@ import {ALL_SERVICES} from './services/_all';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {LoaderInterceptor} from './interceptors/loaderInterceptor';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {SettingsPageComponent} from './components/settingsPage/settingsPage.component';
 
 const appRoutes: Routes = [
   {
@@ -32,7 +33,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'settings',
-    component: CarBrandSettingsComponent,
+    component: SettingsPageComponent,
   },
   {
     path: '',
