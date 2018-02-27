@@ -13,7 +13,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class CustomerDetailPageComponent implements OnInit, OnChanges {
   public customer: Customer;
 
-  public newCustomerForm: FormGroup = new FormGroup({
+  public customerDetailForm: FormGroup = new FormGroup({
     'id': new FormControl(null, []),
     'firstName': new FormControl(null, [Validators.required]),
     'lastName': new FormControl(null, [Validators.required]),
@@ -55,16 +55,16 @@ export class CustomerDetailPageComponent implements OnInit, OnChanges {
   }
 
   public reset(): void {
-    this.newCustomerForm.reset(this.customer, { onlySelf: true });
+    this.customerDetailForm.reset(this.customer, { onlySelf: true });
   }
 
   public update(): void {
-    if (this.newCustomerForm.valid) {
-      this._customerService.updateCustomer(this.newCustomerForm.value).subscribe(() => {
+    if (this.customerDetailForm.valid) {
+      this._customerService.updateCustomer(this.customerDetailForm.value).subscribe(() => {
         this._reload(this.customer.id);
       });
     } else {
-      this._validator.validateAllFormFields(this.newCustomerForm);
+      this._validator.validateAllFormFields(this.customerDetailForm);
     }
   }
 

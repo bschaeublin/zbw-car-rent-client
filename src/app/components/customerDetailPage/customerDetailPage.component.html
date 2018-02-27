@@ -14,16 +14,16 @@
           </div>
         </div>
         <div class="col-md-10 col-xs-12">
-          <form class="customer-detail-form" [formGroup]="newCustomerForm">
+          <form class="customer-detail-form" [formGroup]="customerDetailForm">
             <mat-form-field>
               <input cdkFocusInitial matInput placeholder="firstname *" formControlName="firstName">
-              <mat-error *ngIf="newCustomerForm.hasError('required', 'firstName')">
+              <mat-error *ngIf="customerDetailForm.hasError('required', 'firstName')">
                 Firstname is <strong>required</strong>
               </mat-error>
             </mat-form-field>
             <mat-form-field>
               <input matInput placeholder="lastname *" formControlName="lastName">
-              <mat-error *ngIf="newCustomerForm.hasError('required', 'lastName')">
+              <mat-error *ngIf="customerDetailForm.hasError('required', 'lastName')">
                 Lastname is <strong>required</strong>
               </mat-error>
             </mat-form-field>
@@ -35,10 +35,10 @@
             <mat-form-field>
               <input matInput type="email" placeholder="e-mail *" formControlName="eMail">
               <span matSuffix><mat-icon>mail_outline</mat-icon></span>
-              <mat-error *ngIf="newCustomerForm.hasError('email', 'eMail') && !newCustomerForm.hasError('required', 'eMail')">
+              <mat-error *ngIf="customerDetailForm.hasError('email', 'eMail') && !customerDetailForm.hasError('required', 'eMail')">
                 Please enter a valid email address
               </mat-error>
-              <mat-error *ngIf="newCustomerForm.hasError('required', 'eMail')">
+              <mat-error *ngIf="customerDetailForm.hasError('required', 'eMail')">
                 Email is <strong>required</strong>
               </mat-error>
             </mat-form-field>
@@ -52,8 +52,8 @@
     <mat-card-actions>
       <div class="row">
         <div class="col-xs start-xs">
-          <button mat-button [disabled]="!newCustomerForm.dirty" (click)="reset()">CANCEL</button>
-          <button mat-raised-button color="accent" [disabled]="!newCustomerForm.dirty" (click)="update()">SAVE</button>
+          <button mat-button [disabled]="!customerDetailForm.dirty" (click)="reset()">CANCEL</button>
+          <button mat-raised-button color="accent" [disabled]="!customerDetailForm.dirty" (click)="update()">SAVE</button>
         </div>
         <div class="col-xs end-xs">
           <button mat-button color="warn" (click)="removeCustomer(customer)"><mat-icon>delete</mat-icon>DELETE</button>

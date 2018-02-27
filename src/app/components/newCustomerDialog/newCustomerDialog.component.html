@@ -2,23 +2,23 @@
 <mat-dialog-content>
   <form class="new-customer-form" [formGroup]="newCustomerForm">
     <mat-form-field>
-      <input cdkFocusInitial matInput placeholder="firstname *" formControlName="firstName" value="">
+      <input cdkFocusInitial matInput placeholder="Firstname *" formControlName="firstName" value="">
       <mat-error *ngIf="newCustomerForm.hasError('required', 'firstName')">
         Firstname is <strong>required</strong>
       </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="lastname *" formControlName="lastName" value="">
+      <input matInput placeholder="Lastname *" formControlName="lastName" value="">
       <mat-error *ngIf="newCustomerForm.hasError('required', 'lastName')">
         Lastname is <strong>required</strong>
       </mat-error>
     </mat-form-field>
     <mat-form-field>
       <span matPrefix>+41 &nbsp;</span>
-      <input matInput type="tel" placeholder="phonenumber" value="" formControlName="phoneNumber">
+      <input matInput type="tel" placeholder="Phonenumber" value="" formControlName="phoneNumber">
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="email" placeholder="e-mail *" formControlName="eMail">
+      <input matInput type="email" placeholder="E-Mail *" formControlName="eMail">
       <mat-error *ngIf="newCustomerForm.hasError('email', 'eMail') && !newCustomerForm.hasError('required', 'eMail')">
         Please enter a valid email address
       </mat-error>
