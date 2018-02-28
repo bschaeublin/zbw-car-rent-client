@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LoadingBarService} from '../../services';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import {LoadingBarService} from '../../services';
 export class AppComponent implements OnInit {
   public loading: boolean;
 
-  constructor(private _loadingBarService: LoadingBarService) {
+  constructor(private _loadingBarService: LoadingBarService, private _router: Router) {
     this._loadingBarService.onStart.subscribe(() => {
       setTimeout(() => { this.loading = true; }, 0);
     });
@@ -21,5 +22,9 @@ export class AppComponent implements OnInit {
 
   public ngOnInit() {
 
+  }
+
+  public isRouteSelected(route: string) {
+    return this._router.isActive(route, false);
   }
 }

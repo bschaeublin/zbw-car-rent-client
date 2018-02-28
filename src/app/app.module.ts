@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import {
   AppComponent, CarsListPageComponent, CustomerDetailPageComponent, CustomerListPageComponent,
   NewCustomerDialogComponent,
-  NotFoundPageComponent, CarBrandSettingsComponent
+  NotFoundPageComponent, CarBrandSettingsComponent, NewCarDialogComponent
 } from './components';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './modules/material/material.module';
@@ -64,7 +64,7 @@ export const ALL_INTERCEPTORS = [
     ReactiveFormsModule,
     MaterialModule,
   ],
-  entryComponents: [ NewCustomerDialogComponent ],
+  entryComponents: [ NewCustomerDialogComponent, NewCarDialogComponent ],
   providers: [
     ...ALL_SERVICES,
     ...ALL_INTERCEPTORS,

@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {UnicornService} from '../../services';
 import {Car} from '../../model';
 import {MatDialog, MatSnackBar} from '@angular/material';
-import {NewCustomerDialogComponent} from '../newCustomerDialog/newCustomerDialog.component';
-import {CarService} from '../../services/car.service';
+import {CarService} from '../../services';
+import {NewCarDialogComponent} from '../newCarDialog/newCarDialog.component';
 
 @Component({
   selector: 'app-customer-list-page',
@@ -39,7 +39,7 @@ export class CarsListPageComponent implements OnInit {
   }
 
   public openDialog() {
-    const dialogRef = this._dialog.open(NewCustomerDialogComponent);
+    const dialogRef = this._dialog.open(NewCarDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       this.cars.push(result);
       this._snackBar.open('added new car: ' + result.brandid, null, { duration: 3000 });

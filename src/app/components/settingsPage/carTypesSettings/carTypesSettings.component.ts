@@ -50,6 +50,7 @@ export class CarTypesSettingsComponent implements OnInit {
       this._settingsService.addType(type).subscribe(newType => {
         this._resetTypes();
         this._snackBar.open('added brand: ' + newType.title, null, { duration: 3000 });
+        this.newCarTypeForm.reset();
       });
     } else {
       this._validator.validateAllFormFields(this.newCarTypeForm);

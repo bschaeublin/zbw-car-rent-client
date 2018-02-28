@@ -52,6 +52,7 @@ export class CarClassSettingsComponent implements OnInit {
       this._settingsService.addClass(carClass).subscribe(newClass => {
         this.reset();
         this._snackBar.open('added class: ' + newClass.title, null, { duration: 3000 });
+        this.newCarClassForm.reset();
       });
     } else {
       this._validator.validateAllFormFields(this.newCarClassForm);

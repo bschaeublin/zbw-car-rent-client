@@ -14,20 +14,23 @@
   <mat-sidenav #sidenav mode="side" class="app-sidenav" [opened]="true">
     <section class="mat-typography">
       <ul class="app-sidenav-items">
-        <li><a [routerLink]="'customers'" class="selected"><mat-icon>supervisor_account</mat-icon><span>Customers</span></a></li>
-        <li><a [routerLink]="'cars'"><mat-icon>directions_car</mat-icon><span>Cars</span></a></li>
-        <li><a [routerLink]="'reservations'"><mat-icon>insert_invitation</mat-icon><span>Reservations</span></a></li>
-        <li><a [routerLink]="'contracts'"><mat-icon>assignment</mat-icon><span>Contracts</span></a></li>
-        <li><a [routerLink]="'settings'"><mat-icon>settings</mat-icon><span>Settings</span></a></li>
+        <li><a [routerLink]="'customers'" [ngClass]="isRouteSelected('customers') ? 'selected' : ''"><mat-icon>supervisor_account</mat-icon><span>Customers</span></a></li>
+        <li><a [routerLink]="'cars'" [ngClass]="isRouteSelected('cars') ? 'selected' : ''"><mat-icon>directions_car</mat-icon><span>Cars</span></a></li>
+        <li><a [routerLink]="'reservations'" [ngClass]="isRouteSelected('reservations') ? 'selected' : ''"><mat-icon>insert_invitation</mat-icon><span>Reservations</span></a></li>
+        <li><a [routerLink]="'contracts'" [ngClass]="isRouteSelected('contracts') ? 'selected' : ''"><mat-icon>assignment</mat-icon><span>Contracts</span></a></li>
+        <li><a [routerLink]="'settings'" [ngClass]="isRouteSelected('settings') ? 'selected' : ''"><mat-icon>settings</mat-icon><span>Settings</span></a></li>
       </ul>
     </section>
   </mat-sidenav>
 
   <mat-sidenav-content class="app-sidenav-content">
-    <section class="mat-typography">
-      <router-outlet>
-
-      </router-outlet>
+    <section class="mat-typography row">
+      <div class="col-lg-2 col-md-1 invisible-xs"></div>
+      <div class="col-lg-8 col-md-10 col-xs-12">
+        <router-outlet>
+        </router-outlet>
+      </div>
+      <div class="col-lg-2 col-md-1 invisible-xs"></div>
     </section>
   </mat-sidenav-content>
 </mat-sidenav-container>

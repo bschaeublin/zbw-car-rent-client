@@ -68,7 +68,7 @@
 
 <form [formGroup]="newCarClassForm" class="add-new-container-class">
   <div class="row">
-    <div class="col-md col-xs-12">
+    <div class="col-md-2 col-xs-12">
       <mat-form-field>
         <input cdkFocusInitial matInput placeholder="Title *" formControlName="title">
         <mat-error *ngIf="newCarClassForm.hasError('required', 'title')">
@@ -85,8 +85,8 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <div class="col-md-2 col-xs-12 end-md start-xs">
-      <button mat-button color="accent" (click)="addClass()">ADD NEW CLASS</button>
+    <div class="col-md-8 col-xs-12 start-xs">
+      <button mat-raised-button (click)="addClass()">ADD CLASS</button>
     </div>
   </div>
 </form>

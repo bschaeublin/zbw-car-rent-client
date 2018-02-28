@@ -8,3 +8,4 @@ export * from './settingsPage/settingsPage.component';
 export * from './settingsPage/carBrandSettings/carBrandSettings.component';
 export * from './settingsPage/carTypesSettings/carTypesSettings.component';
 export * from './settingsPage/carClassesSettings/carClassesSettings.component';
+export * from './newCarDialog/newCarDialog.component';

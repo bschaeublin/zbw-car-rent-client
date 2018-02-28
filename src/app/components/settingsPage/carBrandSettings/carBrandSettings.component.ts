@@ -50,6 +50,7 @@ export class CarBrandSettingsComponent implements OnInit {
       this._settingsService.addBrand(brand).subscribe(newBrand => {
         this._resetBrands();
         this._snackBar.open('added brand: ' + newBrand.title, null, { duration: 3000 });
+        this.newCarBrandsForm.reset();
       });
     } else {
       this._validator.validateAllFormFields(this.newCarBrandsForm);
