@@ -1,0 +1,12 @@
+<div class="bread-crumb-bar">
+  <section class="mat-typography crmb-container">
+    <ul>
+      <li *ngFor="let c of crumbs">
+        <h3>
+          <a [routerLink]="[c.route]">{{c.title.toUpperCase()}}</a>
+          <span class="crmbs-seperator" *ngIf="crumbs.indexOf(c) !== crumbs.length - 1"> > </span>
+        </h3>
+      </li>
+    </ul>
+  </section>
+</div>

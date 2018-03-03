@@ -1,0 +1,37 @@
+<h2 mat-dialog-title>New Customer</h2>
+<mat-dialog-content>
+  <form class="new-customer-form" [formGroup]="newCustomerForm">
+    <mat-form-field>
+      <input cdkFocusInitial matInput placeholder="Firstname *" formControlName="firstName" value="">
+      <mat-error *ngIf="newCustomerForm.hasError('required', ['firstName'])">
+        Firstname is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Lastname *" formControlName="lastName" value="">
+      <mat-error *ngIf="newCustomerForm.hasError('required', ['lastName'])">
+        Lastname is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <span matPrefix>+41 &nbsp;</span>
+      <input matInput type="tel" placeholder="Phonenumber" value="" formControlName="phoneNumber">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="email" placeholder="E-Mail *" formControlName="eMail">
+      <mat-error *ngIf="newCustomerForm.hasError('email', ['eMail']) && !newCustomerForm.hasError('required', ['eMail'])">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="newCustomerForm.hasError('required', ['eMail'])">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput placeholder="Address" formControlName="address"></textarea>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button (click)="onSubmit()" mat-button>Save</button>
+</mat-dialog-actions>

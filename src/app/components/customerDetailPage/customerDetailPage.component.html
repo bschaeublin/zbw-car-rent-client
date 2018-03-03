@@ -1,0 +1,60 @@
+<div *ngIf="customer">
+  <mat-card>
+    <mat-card-content>
+      <div class="row">
+        <div class="col-md-2 col-xs-12">
+          <img [src]="getAvatar(customer)" width="128" height="128">
+          <div class="contact-detail-box">
+            <div><mat-icon>perm_identity</mat-icon> <span>Customer-ID: {{customer.id}}</span></div>
+          </div>
+        </div>
+        <div class="col-md-10 col-xs-12">
+          <form class="customer-detail-form" [formGroup]="customerDetailForm">
+            <mat-form-field>
+              <input cdkFocusInitial matInput placeholder="firstname *" formControlName="firstName">
+              <mat-error *ngIf="customerDetailForm.hasError('required', 'firstName')">
+                Firstname is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="lastname *" formControlName="lastName">
+              <mat-error *ngIf="customerDetailForm.hasError('required', 'lastName')">
+                Lastname is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <span matPrefix>+41 &nbsp;</span>
+              <input matInput type="tel" placeholder="phonenumber" formControlName="phoneNumber">
+              <span matSuffix><mat-icon>phone</mat-icon></span>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="email" placeholder="e-mail *" formControlName="eMail">
+              <span matSuffix><mat-icon>mail_outline</mat-icon></span>
+              <mat-error *ngIf="customerDetailForm.hasError('email', 'eMail') && !customerDetailForm.hasError('required', 'eMail')">
+                Please enter a valid email address
+              </mat-error>
+              <mat-error *ngIf="customerDetailForm.hasError('required', 'eMail')">
+                Email is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <textarea matInput placeholder="Address" formControlName="address"></textarea>
+            </mat-form-field>
+          </form>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="row">
+        <div class="col-xs start-xs">
+          <button mat-button [disabled]="!customerDetailForm.dirty" (click)="reset()">CANCEL</button>
+          <button mat-raised-button color="accent" [disabled]="!customerDetailForm.dirty" (click)="update()">SAVE</button>
+        </div>
+        <div class="col-xs end-xs">
+          <button mat-button color="warn" (click)="removeCustomer(customer)"><mat-icon>delete</mat-icon>DELETE</button>
+        </div>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>
+

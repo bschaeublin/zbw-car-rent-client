@@ -1,0 +1,44 @@
+.customer-list-detail {
+  margin-top: 10px !important;
+  span {
+    vertical-align: super;
+  }
+}
+
+.card-header-space-between {
+  justify-content: space-between;
+  flex: 1 100%;
+}
+
+.customer-list-title {
+  width: 300px;
+}
+
+mat-cell {
+  button {
+    min-width: 50px;
+  }
+}
+
+.mat-column-id {
+  flex: 0 0 50px;
+}
+
+.mat-column-remove{
+  flex: 0 0 50px;
+}
+
+.mat-column-edit {
+  flex: 0 0 50px;
+}
+
+.add-new-container-class {
+  margin-top: 20px;
+  mat-form-field {
+    width: 100%;
+  }
+  button {
+    margin-top: 5px;
+  }
+  margin-bottom: 10px;
+}
