@@ -8,11 +8,19 @@ branches:
   only:
     - develop
 
+addons:
+  sonarcloud:
+    organization: "bschaeublin-github" # the key of the org you chose at step #3
+    token: $SONAR_TOKEN
+    branches:
+      - master
+
 before_script:
   - npm install -g @angular/cli
 
 script:
   - ng build --prod
+  - sonar-scanner
 
 notifications:
   email:
