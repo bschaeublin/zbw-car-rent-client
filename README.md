@@ -1,4 +1,4 @@
-# zbw-car-rent-api
+# zbw-car-rent-client
 car rent project - client
 - angular cli 1.6.5
 - material design
