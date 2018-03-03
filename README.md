@@ -11,3 +11,4 @@ car rent project - client
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=zbw-car-rent-client&metric=bugs)](https://sonarcloud.io/project/issues?id=zbw-car-rent-client&resolved=false&types=BUG)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=zbw-car-rent-client&metric=code_smells)](https://sonarcloud.io/project/issues?id=zbw-car-rent-client&resolved=false&types=CODE_SMELL)
 [![Codecoverage](https://sonarcloud.io/api/project_badges/measure?project=zbw-car-rent-client&metric=coverage)](https://sonarcloud.io/component_measures?id=zbw-car-rent-client&metric=coverage)
+[![Duplicated Lines](https://sonarcloud.io/api/project_badges/measure?project=zbw-car-rent-client&metric=duplicated_lines_density)](https://sonarcloud.io/component_measures?id=zbw-car-rent-client&metric=duplicated_lines_density)
