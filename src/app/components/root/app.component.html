@@ -1,9 +1,10 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
+<mat-toolbar color="primary" class="mat-elevation-z6">
+  <mat-toolbar-row class="mat-elevation-z6">
     <button mat-button class="app-menu-icon" (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
     <span>Car Rent</span>
   </mat-toolbar-row>
 </mat-toolbar>
+<app-breadcrumb-bar></app-breadcrumb-bar>
 
 <mat-progress-bar *ngIf="loading"
   color="accent"
@@ -24,13 +25,9 @@
   </mat-sidenav>
 
   <mat-sidenav-content class="app-sidenav-content">
-    <section class="mat-typography row">
-      <div class="col-lg-2 col-md-1 invisible-xs"></div>
-      <div class="col-lg-8 col-md-10 col-xs-12">
+    <section class="mat-typography">
         <router-outlet>
         </router-outlet>
-      </div>
-      <div class="col-lg-2 col-md-1 invisible-xs"></div>
     </section>
   </mat-sidenav-content>
 </mat-sidenav-container>

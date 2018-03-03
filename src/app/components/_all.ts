@@ -9,6 +9,7 @@ import {CarBrandSettingsComponent} from './settingsPage/carBrandSettings/carBran
 import {CarTypesSettingsComponent} from './settingsPage/carTypesSettings/carTypesSettings.component';
 import {CarClassSettingsComponent} from './settingsPage/carClassesSettings/carClassesSettings.component';
 import {NewCarDialogComponent} from './newCarDialog/newCarDialog.component';
+import {BreadCrumbBarComponent} from './breadcrumbBar/breadcrumbBar.component';
 
 export const ALL_COMPONENTS = [
   AppComponent,
@@ -21,5 +22,6 @@ export const ALL_COMPONENTS = [
   SettingsPageComponent,
   NewCarDialogComponent,
   CarBrandSettingsComponent,
+  BreadCrumbBarComponent,
   CarClassSettingsComponent
 ];

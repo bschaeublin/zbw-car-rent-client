@@ -1,7 +1,11 @@
-<app-car-brand-settings></app-car-brand-settings>
-
-<app-car-types-settings></app-car-types-settings>
-
-<app-car-classes-settings></app-car-classes-settings>
-
-<div class="bottom-spacer"></div>
+<mat-tab-group class="setting-tabs">
+  <mat-tab label="CAR BRANDS">
+    <app-car-brand-settings></app-car-brand-settings>
+  </mat-tab>
+  <mat-tab label="CAR TYPES">
+    <app-car-types-settings></app-car-types-settings>
+  </mat-tab>
+  <mat-tab label="CAR CLASSES">
+    <app-car-classes-settings></app-car-classes-settings>
+  </mat-tab>
+</mat-tab-group>

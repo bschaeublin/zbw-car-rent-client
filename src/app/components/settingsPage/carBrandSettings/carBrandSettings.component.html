@@ -1,4 +1,3 @@
-<h2>Car Brands</h2>
 <div *ngIf="carBrands && carBrands.length > 0; else nobrands">
   <div class="example-container mat-elevation-z8">
     <mat-table #table [dataSource]="carBrands" matSort>

@@ -4,6 +4,7 @@ import {UnicornService} from './unicorn.service';
 import {ValidationService} from './validation.service';
 import {CarService} from './car.service';
 import {SettingsService} from './settings.service';
+import {BreadCrumbService} from './breadcrumb.service';
 
 export const ALL_SERVICES = [
   CustomerService,
@@ -11,5 +12,6 @@ export const ALL_SERVICES = [
   UnicornService,
   ValidationService,
   CarService,
-  SettingsService
+  SettingsService,
+  BreadCrumbService,
 ];

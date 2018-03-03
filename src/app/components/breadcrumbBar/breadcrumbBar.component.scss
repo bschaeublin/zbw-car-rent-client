@@ -1,0 +1,43 @@
+@import '../../../styles/mat-car-rent-theme';
+
+.bread-crumb-bar {
+  background: mat-color($custom-theme-primary);
+  height: 64px;
+}
+
+.crmb-container {
+  margin-left: 30px;
+  height: 100%;
+}
+
+ul {
+  vertical-align: middle;
+}
+
+ul li {
+  display: inline-block;
+  margin-right: 20px;
+  margin-top: 20px;
+  a {
+    color: $light-secondary-text;
+    text-decoration: none;
+    &:visited {
+      color: $light-secondary-text;
+    }
+    &:hover {
+      color: $light-secondary-text;
+    }
+    &:active {
+      color: $light-focused;
+    }
+    &:last-child {
+      color: $light-primary-text;
+    }
+  }
+
+  .crmbs-seperator {
+    margin-left: 10px;
+    color: white;
+    font-size: 1.3em;
+  }
+}

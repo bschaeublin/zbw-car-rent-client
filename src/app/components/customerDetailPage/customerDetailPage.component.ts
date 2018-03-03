@@ -1,6 +1,6 @@
 import {Component, OnChanges, OnInit} from '@angular/core';
-import {CustomerService, UnicornService, ValidationService} from '../../services';
-import {Customer} from '../../model';
+import {BreadCrumbService, CustomerService, UnicornService, ValidationService} from '../../services';
+import {BreadCrumb, Customer} from '../../model';
 import {MatDialog} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
@@ -26,6 +26,7 @@ export class CustomerDetailPageComponent implements OnInit, OnChanges {
               private _dialog: MatDialog,
               private _validator: ValidationService,
               private _router: Router,
+              private _crs: BreadCrumbService,
               private _route: ActivatedRoute) {
   }
 
@@ -40,6 +41,11 @@ export class CustomerDetailPageComponent implements OnInit, OnChanges {
   private _reload(id: number): void {
     this._customerService.getCustomer(id).subscribe(c => {
       this.customer = c;
+      this._crs.buildBreadCrumb([
+        new BreadCrumb('/customers', 'Home'),
+        new BreadCrumb('/customers', 'Customers'),
+        new BreadCrumb('/customers/' + c.id, c.firstName + ' ' + c.lastName)]);
+
       this.reset();
     });
   }

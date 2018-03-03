@@ -6,3 +6,4 @@ export * from './customer';
 export * from './rentalContract';
 export * from './reservation';
 export * from './reservationState';
+export * from './breadCrumb';

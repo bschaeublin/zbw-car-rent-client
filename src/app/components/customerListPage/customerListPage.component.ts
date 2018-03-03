@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {CustomerService, UnicornService} from '../../services';
-import {Customer} from '../../model';
+import {BreadCrumbService, CustomerService, UnicornService} from '../../services';
+import {BreadCrumb, Customer} from '../../model';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {NewCustomerDialogComponent} from '../newCustomerDialog/newCustomerDialog.component';
 
@@ -14,12 +14,14 @@ export class CustomerListPageComponent implements OnInit {
   public loading = true;
   constructor(private _customerService: CustomerService,
               private _gravatar: UnicornService,
+              private _bcs: BreadCrumbService,
               private _dialog: MatDialog,
               private _snackBar: MatSnackBar) {
   }
 
   public ngOnInit(): void {
     this.reset();
+    this._bcs.buildBreadCrumb([  new BreadCrumb('/customers', 'Home') , new BreadCrumb('/customers', 'Customers') ]);
   }
 
   public reset(): void {
