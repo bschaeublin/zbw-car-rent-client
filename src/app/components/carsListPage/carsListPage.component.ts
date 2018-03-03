@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {UnicornService} from '../../services';
-import {Car} from '../../model';
+import {BreadCrumbService, UnicornService} from '../../services';
+import {BreadCrumb, Car} from '../../model';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {CarService} from '../../services';
 import {NewCarDialogComponent} from '../newCarDialog/newCarDialog.component';
@@ -16,7 +16,11 @@ export class CarsListPageComponent implements OnInit {
   constructor(private _carService: CarService,
               private _gravatar: UnicornService,
               private _dialog: MatDialog,
+              private _crs: BreadCrumbService,
               private _snackBar: MatSnackBar) {
+    this._crs.buildBreadCrumb([
+      new BreadCrumb('/customers', 'Home'),
+      new BreadCrumb('/cars', 'Cars')]);
   }
 
   public ngOnInit(): void {
