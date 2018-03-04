@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CarService, SettingsService, ValidationService} from '../../services';
-import {CarBrand, CarClass, CarType} from '../../model';
+import {Car, CarBrand, CarClass, CarType} from '../../model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatDialogRef} from '@angular/material';
 import {Observable} from 'rxjs/Observable';
@@ -68,7 +68,12 @@ export class NewCarDialogComponent implements OnInit {
 
   public onSubmit(): void {
     if (this.newCarForm.valid) {
-      this._carsService.addCar(this.newCarForm.value).subscribe(result => { this._dialogRef.close(result); });
+      const newCarFormValue = this.newCarForm.value;
+      const newCar = newCarFormValue as Car;
+      newCar.classId = newCarFormValue.classId.id;
+      newCar.brandId = newCarFormValue.brandId.id;
+      newCar.typeId = newCarFormValue.typeId.id;
+      this._carsService.addCar(newCar).subscribe(result => { this._dialogRef.close(result); });
     } else {
       console.log('validating');
       this._validator.validateAllFormFields(this.newCarForm);
