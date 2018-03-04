@@ -1,7 +1,7 @@
 <div *ngIf="customers && customers.length > 0; else noentries">
   <mat-card *ngFor="let customer of customers">
     <mat-card-header>
-        <img mat-card-avatar [src]="getAvatar(customer)">
+        <img mat-card-avatar [src]="getAvatar(customer)" alt="customer avatar">
       <mat-card-title class="customer-list-title"><span class="mat-typography">{{customer.firstName + ' ' + customer.lastName}}</span></mat-card-title>
         <mat-card-subtitle>{{customer.address}}</mat-card-subtitle>
     </mat-card-header>
