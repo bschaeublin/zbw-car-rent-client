@@ -5,7 +5,7 @@
       <input cdkFocusInitial matInput placeholder="Brand" aria-label="Brand" [matAutocomplete]="brandsAuto" formControlName="brandId">
       <mat-autocomplete #brandsAuto="matAutocomplete" [displayWith]="displayFn">
         <mat-option *ngFor="let brand of filteredBrands | async" [value]="brand">
-          <span>{{ brand.title }}</span> |
+          <span>{{ brand.title }}</span>
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
@@ -14,7 +14,7 @@
       <input matInput placeholder="Type" aria-label="Type" [matAutocomplete]="typeAuto" formControlName="typeId">
       <mat-autocomplete #typeAuto="matAutocomplete" [displayWith]="displayFn">
         <mat-option *ngFor="let type of filteredTypes | async" [value]="type">
-          <span>{{ type.title }}</span> |
+          <span>{{ type.title }}</span>
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
@@ -24,7 +24,7 @@
       <mat-autocomplete #classAuto="matAutocomplete" [displayWith]="displayFn">
         <mat-option *ngFor="let cls of filteredClasses | async" [value]="cls">
           <span>{{ cls.title }}</span> |
-          <small>{{ cls.cost }}$</small> |
+          <small>{{ cls.cost }}$</small>
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>

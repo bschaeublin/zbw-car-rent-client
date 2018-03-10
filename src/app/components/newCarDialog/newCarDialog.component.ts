@@ -37,33 +37,29 @@ export class NewCarDialogComponent implements OnInit {
   }
 
   public async ngOnInit() {
-    Observable.forkJoin(
-      this._settingsService.getClasses(),
-      this._settingsService.getTypes(),
-      this._settingsService.getBrands()
-    ).subscribe(data => {
-      this.carClasses = data[0];
-      this.carTypes = data[1];
-      this.carBrands = data[2];
+      this._settingsService.getSettings().subscribe(s => {
+        this.carBrands = s.carBrands;
+        this.carTypes = s.carTypes;
+        this.carClasses = s.carClasses;
 
-      this.filteredBrands = this.newCarForm.controls['brandId'].valueChanges
-        .pipe(
-          startWith(''),
-          map(b => b ? this.filterBrands(b) : this.carBrands.slice())
-        );
+        this.filteredBrands = this.newCarForm.controls['brandId'].valueChanges
+          .pipe(
+            startWith(''),
+            map(b => b ? this.filterBrands(b) : this.carBrands.slice())
+          );
 
-      this.filteredTypes = this.newCarForm.controls['typeId'].valueChanges
-        .pipe(
-          startWith(''),
-          map(t => t ? this.filterTypes(t) : this.carTypes.slice())
-        );
+        this.filteredTypes = this.newCarForm.controls['typeId'].valueChanges
+          .pipe(
+            startWith(''),
+            map(t => t ? this.filterTypes(t) : this.carTypes.slice())
+          );
 
-      this.filteredClasses = this.newCarForm.controls['classId'].valueChanges
-        .pipe(
-          startWith(''),
-          map(c => c ? this.filterClasses(c) : this.carClasses.slice())
-        );
-    });
+        this.filteredClasses = this.newCarForm.controls['classId'].valueChanges
+          .pipe(
+            startWith(''),
+            map(c => c ? this.filterClasses(c) : this.carClasses.slice())
+          );
+      });
   }
 
   public onSubmit(): void {

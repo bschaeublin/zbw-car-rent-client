@@ -2,14 +2,14 @@
   <mat-card *ngFor="let car of cars">
     <mat-card-header>
         <img mat-card-avatar [src]="getAvatar(car)" alt="car avatar">
-      <mat-card-title class="customer-list-title"><span class="mat-typography">{{car.brandId}}</span></mat-card-title>
-        <mat-card-subtitle>{{car.registrationYear}}</mat-card-subtitle>
+      <mat-card-title class="customer-list-title"><span class="mat-typography">{{ carSettings.findBrand(car.brandId)?.title + ' (' + car.registrationYear  + ')'}}</span></mat-card-title>
+        <mat-card-subtitle>{{ carSettings.findType(car.typeId)?.title }}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <div class="customer-list-detail">
+        <div><mat-icon>favorite_border</mat-icon> <span>{{getReservationInfo(car.id)}}</span></div>
         <div><mat-icon>straighten</mat-icon> <span>Kilometers: {{car.kilometers ? car.kilometers : '0' }}</span></div>
-        <div><mat-icon>directions_car</mat-icon> <span>Type: {{car.typeId ? car.typeId : '-'}}</span></div>
-        <div><mat-icon>class</mat-icon> <span>Class: {{car.classId ? car.classId : '-'}}</span></div>
+        <div><mat-icon>class</mat-icon> <span>Class: {{carSettings.findClass(car.classId)?.title }}</span></div>
         <div><mat-icon>power</mat-icon> <span>HP: {{car.horsePower ? car.horsePower : '-'}}</span></div>
       </div>
     </mat-card-content>
