@@ -6,6 +6,7 @@ import {CarService} from '../../services';
 import {NewCarDialogComponent} from '../newCarDialog/newCarDialog.component';
 import {CarSettings} from '../../model/carSettings';
 import * as moment from 'moment';
+import {weekdays} from 'moment';
 
 @Component({
   selector: 'app-customer-list-page',
@@ -74,14 +75,21 @@ export class CarsListPageComponent implements OnInit {
 
     const nextReservation = reservations[0];
     if (nextReservation) {
-      if (moment(nextReservation.rentalDate).isAfter(moment(), 'day')) {
-        return 'Next booking: ' + moment(nextReservation.rentalDate).fromNow();
+      const rentalDate = moment.utc(nextReservation.rentalDate);
+      const rentalToDate = rentalDate.clone().add(nextReservation.days, 'days');
+
+      if (rentalDate.isAfter(moment.utc(), 'day')) {
+        return 'Status: Free until ' + rentalDate.format('DD.MM.YYYY');
       }
-      if (moment(nextReservation.rentalDate).isSame(moment(), 'day')) {
+      if (rentalDate.isSame(moment.utc(), 'day')) {
         return 'Status: Booked today';
       }
 
-      return 'Last booked: ' + moment(nextReservation.rentalDate).fromNow();
+      if (rentalDate.isBefore(moment.utc()) && rentalToDate.isSameOrAfter(moment())) {
+        return 'Status: Booked from ' + rentalDate.format('DD.MM.YYYY') + ' to ' + rentalToDate.format('DD.MM.YYYY');
+      }
+
+      return 'Status: Free, last booked ' + rentalDate.fromNow();
     }
 
     return 'Status: free';
