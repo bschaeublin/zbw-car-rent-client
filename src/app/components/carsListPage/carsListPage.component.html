@@ -7,7 +7,7 @@
     </mat-card-header>
     <mat-card-content>
       <div class="customer-list-detail">
-        <div><mat-icon>favorite_border</mat-icon> <span>{{getReservationInfo(car.id)}}</span></div>
+        <div><mat-icon>favorite_border</mat-icon> <span>{{ getReservationInfo(car.id)}}</span></div>
         <div><mat-icon>straighten</mat-icon> <span>Kilometers: {{car.kilometers ? car.kilometers : '0' }}</span></div>
         <div><mat-icon>class</mat-icon> <span>Class: {{carSettings.findClass(car.classId)?.title }}</span></div>
         <div><mat-icon>power</mat-icon> <span>HP: {{car.horsePower ? car.horsePower : '-'}}</span></div>
@@ -16,7 +16,6 @@
     <mat-card-actions>
       <div class="row">
         <div class="col-xs-12">
-          <a mat-button color="primary" [routerLink]="'/cars/' + car.id">VIEW DETAIL</a>
           <button mat-button color="warn" (click)="removeCar(car)"><mat-icon>delete</mat-icon>DELETE</button>
         </div>
       </div>
