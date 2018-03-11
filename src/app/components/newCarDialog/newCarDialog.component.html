@@ -2,10 +2,10 @@
 <mat-dialog-content>
   <form class="new-car-form" [formGroup]="newCarForm">
     <mat-form-field>
-      <input matInput placeholder="Brand" aria-label="Brand" [matAutocomplete]="brandsAuto" formControlName="brandId">
+      <input cdkFocusInitial matInput placeholder="Brand" aria-label="Brand" [matAutocomplete]="brandsAuto" formControlName="brandId">
       <mat-autocomplete #brandsAuto="matAutocomplete" [displayWith]="displayFn">
         <mat-option *ngFor="let brand of filteredBrands | async" [value]="brand">
-          <span>{{ brand.title }}</span> |
+          <span>{{ brand.title }}</span>
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
@@ -14,7 +14,7 @@
       <input matInput placeholder="Type" aria-label="Type" [matAutocomplete]="typeAuto" formControlName="typeId">
       <mat-autocomplete #typeAuto="matAutocomplete" [displayWith]="displayFn">
         <mat-option *ngFor="let type of filteredTypes | async" [value]="type">
-          <span>{{ type.title }}</span> |
+          <span>{{ type.title }}</span>
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
@@ -24,27 +24,27 @@
       <mat-autocomplete #classAuto="matAutocomplete" [displayWith]="displayFn">
         <mat-option *ngFor="let cls of filteredClasses | async" [value]="cls">
           <span>{{ cls.title }}</span> |
-          <small>{{ cls.cost }}$</small> |
+          <small>{{ cls.cost }}$</small>
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
 
     <mat-form-field>
-      <input cdkFocusInitial matInput placeholder="Kilometers *" formControlName="kilometers" value="">
+      <input matInput placeholder="Kilometers *" formControlName="kilometers" value="">
       <mat-error *ngIf="newCarForm.hasError('required', ['kilometers'])">
         Kilometers are <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <input cdkFocusInitial matInput placeholder="HorsePower *" formControlName="horsePower" value="">
+      <input matInput placeholder="HorsePower *" formControlName="horsePower" value="">
       <mat-error *ngIf="newCarForm.hasError('required', ['horsePower'])">
         HorsePower is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <input cdkFocusInitial matInput placeholder="Year of registration *" formControlName="registrationYear" value="">
+      <input matInput placeholder="Year of registration *" formControlName="registrationYear" value="">
       <mat-error *ngIf="newCarForm.hasError('required', ['registrationYear'])">
         Year of registration is <strong>required</strong>
       </mat-error>

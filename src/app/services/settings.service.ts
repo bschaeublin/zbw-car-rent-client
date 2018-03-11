@@ -3,6 +3,8 @@ import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Car, CarBrand, CarClass, CarType} from '../model';
+import {CarSettings} from '../model/carSettings';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class SettingsService {
@@ -12,6 +14,24 @@ export class SettingsService {
   private _typesUrl: string = this._apiUrl + 'CarTypes';
 
   constructor(private _http: HttpClient) {
+  }
+
+  public getSettings(): Observable<CarSettings> {
+    return Observable.forkJoin(
+      this.getClasses(),
+      this.getTypes(),
+      this.getBrands()
+    ).pipe(map(data => {
+      const carClasses = data[0];
+      const carTypes = data[1];
+      const carBrands = data[2];
+
+      const settings = new CarSettings();
+      settings.carBrands = carBrands;
+      settings.carTypes = carTypes;
+      settings.carClasses = carClasses;
+      return settings;
+    }));
   }
 
   /* BRANDS */

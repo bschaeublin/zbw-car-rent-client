@@ -10,3 +10,4 @@ export * from './settingsPage/carTypesSettings/carTypesSettings.component';
 export * from './settingsPage/carClassesSettings/carClassesSettings.component';
 export * from './newCarDialog/newCarDialog.component';
 export * from './breadcrumbBar/breadcrumbBar.component';
+export * from './reservationsListPage/reservationsListPage.component';

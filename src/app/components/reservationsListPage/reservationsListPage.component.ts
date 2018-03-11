@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {BreadCrumbService, ReservationService, SettingsService, UnicornService} from '../../services';
-import {BreadCrumb, Car, Reservation} from '../../model';
+import {BreadCrumbService, CustomerService, ReservationService, SettingsService, UnicornService} from '../../services';
+import {BreadCrumb, Car, Customer, Reservation, ReservationState} from '../../model';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {CarService} from '../../services';
 import {NewCarDialogComponent} from '../newCarDialog/newCarDialog.component';
@@ -9,17 +9,19 @@ import * as moment from 'moment';
 import {weekdays} from 'moment';
 
 @Component({
-  selector: 'app-customer-list-page',
-  templateUrl: './carsListPage.component.html',
-  styleUrls: ['./carsListPage.component.scss']
+  selector: 'app-reservations-list-page',
+  templateUrl: './reservationsListPage.component.html',
+  styleUrls: ['./reservationsListPage.component.scss']
 })
-export class CarsListPageComponent implements OnInit {
-  public cars: Car[];
-  public carSettings: CarSettings;
+export class ReservationsListPageComponent implements OnInit {
   public reservations: Reservation[];
+  public carSettings: CarSettings;
+  public customers: Customer[];
+  public cars: Car[];
 
   constructor(private _carService: CarService,
               private _gravatar: UnicornService,
+              private _customerService: CustomerService,
               private _rss: ReservationService,
               private _dialog: MatDialog,
               private _crs: BreadCrumbService,
@@ -27,32 +29,29 @@ export class CarsListPageComponent implements OnInit {
               private _snackBar: MatSnackBar) {
     this._crs.buildBreadCrumb([
       new BreadCrumb('/customers', 'Home'),
-      new BreadCrumb('/cars', 'Cars')]);
+      new BreadCrumb('/reservations', 'Reservations')]);
   }
 
   public ngOnInit(): void {
     this.reset();
-
   }
 
   public reset(): void {
     this._settingsService.getSettings().subscribe(s => {
       this.carSettings = s;
-      this._rss.getReservations().subscribe((r) => {
-        this.reservations = r;
-      });
       this._carService.getCars().subscribe(response => this.cars = response);
+      this._customerService.getCustomers().subscribe(response => {
+          this.customers = response;
+          this._rss.getReservations().subscribe(r => this.reservations = r);
+        }
+      );
     });
   }
 
-  public getAvatar(c: Car): string {
-    return this._gravatar.getAvatarFromString(c.id.toString(), 32);
-  }
-
-  public removeCar(c: Car): void {
-    this._carService.removeCar(c).subscribe(success => {
+  public removeReservation(r: Reservation): void {
+    this._rss.removeReservation(r).subscribe(success => {
       this.reset();
-      this._snackBar.open('removed car: ' + c.brandId, null, { duration: 3000 });
+      this._snackBar.open('removed reservation: ' + moment.utc(r.reservationDate).format('DD.MM.YYYY'), null, { duration: 3000 });
     });
   }
 
@@ -95,10 +94,44 @@ export class CarsListPageComponent implements OnInit {
     return 'Status: free';
   }
 
+  public getRentalDate(res: Reservation) {
+    const from = moment.utc(res.rentalDate);
+    const to = from.clone().add(res.days, 'days');
+    return from.format('DD.MM.YYYY') + ' - ' + to.format('DD.MM.YYYY');
+  }
+
+  public getReservationDate(res: Reservation) {
+    return moment.utc(res.reservationDate).fromNow();
+  }
+
+  public getCustomerInfo(res: Reservation) {
+    const customer = this.customers.filter(c => c.id === res.customerId)[0];
+    return customer.firstName + ' ' + customer.lastName;
+  }
+
+  public getCarsInfo(res: Reservation) {
+    const car = this.cars.filter(c => c.id === res.carId)[0];
+    const brand = this.carSettings.findBrand(car.brandId);
+    return brand.title + ' (' + car.registrationYear  + ')';
+  }
+
+  public getStateInfo(res: Reservation) {
+    switch (res.state) {
+      case ReservationState.Pending:
+        return 'pendig';
+      case ReservationState.Contracted:
+        return 'contracted';
+      case ReservationState.Reserved:
+        return 'reserved';
+      default:
+        return 'unknown';
+    }
+  }
+
   public openDialog() {
     const dialogRef = this._dialog.open(NewCarDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
-      this.cars.push(result);
+      this.reservations.push(result);
       this._snackBar.open('added new car: ' + result.brandid, null, { duration: 3000 });
     });
   }

@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import {
   AppComponent, CarsListPageComponent, CustomerDetailPageComponent, CustomerListPageComponent,
   NewCustomerDialogComponent,
-  NotFoundPageComponent, CarBrandSettingsComponent, NewCarDialogComponent
+  NotFoundPageComponent, CarBrandSettingsComponent, NewCarDialogComponent, ReservationsListPageComponent
 } from './components';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './modules/material/material.module';
@@ -30,6 +30,10 @@ const appRoutes: Routes = [
   {
     path: 'cars',
     component: CarsListPageComponent,
+  },
+  {
+    path: 'reservations',
+    component: ReservationsListPageComponent,
   },
   {
     path: 'settings',
