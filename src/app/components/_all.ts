@@ -11,6 +11,7 @@ import {CarClassSettingsComponent} from './settingsPage/carClassesSettings/carCl
 import {NewCarDialogComponent} from './newCarDialog/newCarDialog.component';
 import {BreadCrumbBarComponent} from './breadcrumbBar/breadcrumbBar.component';
 import {ReservationsListPageComponent} from './reservationsListPage/reservationsListPage.component';
+import {NewReservationDialogComponent} from './newReservationDialog/newReservationDialog.component';
 
 export const ALL_COMPONENTS = [
   AppComponent,
@@ -24,6 +25,7 @@ export const ALL_COMPONENTS = [
   NewCarDialogComponent,
   CarBrandSettingsComponent,
   BreadCrumbBarComponent,
+  NewReservationDialogComponent,
   ReservationsListPageComponent,
   CarClassSettingsComponent
 ];

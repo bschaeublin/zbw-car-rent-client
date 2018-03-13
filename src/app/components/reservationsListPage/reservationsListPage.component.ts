@@ -7,6 +7,7 @@ import {NewCarDialogComponent} from '../newCarDialog/newCarDialog.component';
 import {CarSettings} from '../../model/carSettings';
 import * as moment from 'moment';
 import {weekdays} from 'moment';
+import {NewReservationDialogComponent} from '../newReservationDialog/newReservationDialog.component';
 
 @Component({
   selector: 'app-reservations-list-page',
@@ -129,10 +130,10 @@ export class ReservationsListPageComponent implements OnInit {
   }
 
   public openDialog() {
-    const dialogRef = this._dialog.open(NewCarDialogComponent);
+    const dialogRef = this._dialog.open(NewReservationDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       this.reservations.push(result);
-      this._snackBar.open('added new car: ' + result.brandid, null, { duration: 3000 });
+      this._snackBar.open('added new car: ' + result, null, { duration: 3000 });
     });
   }
 }

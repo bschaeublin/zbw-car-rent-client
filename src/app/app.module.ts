@@ -15,6 +15,8 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {LoaderInterceptor} from './interceptors/loaderInterceptor';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SettingsPageComponent} from './components/settingsPage/settingsPage.component';
+import {NewReservationDialogComponent} from './components/newReservationDialog/newReservationDialog.component';
+import {MAT_DATE_LOCALE} from '@angular/material';
 
 const appRoutes: Routes = [
   {
@@ -68,10 +70,11 @@ export const ALL_INTERCEPTORS = [
     ReactiveFormsModule,
     MaterialModule,
   ],
-  entryComponents: [ NewCustomerDialogComponent, NewCarDialogComponent ],
+  entryComponents: [ NewCustomerDialogComponent, NewCarDialogComponent, NewReservationDialogComponent ],
   providers: [
     ...ALL_SERVICES,
     ...ALL_INTERCEPTORS,
+    {provide: MAT_DATE_LOCALE, useValue: 'de-CH'},
   ],
   bootstrap: [AppComponent]
 })
