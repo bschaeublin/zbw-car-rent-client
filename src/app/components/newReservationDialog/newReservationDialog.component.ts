@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {CarService, CustomerService, ReservationService, SettingsService, ValidationService} from '../../services';
-import {Car, CarBrand, CarClass, Customer} from '../../model';
+import {Car, CarBrand, CarClass, Customer, Reservation, ReservationState} from '../../model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatDialogRef} from '@angular/material';
 import {Observable} from 'rxjs/Observable';
 import {map, startWith} from 'rxjs/operators';
 import 'rxjs/add/observable/forkJoin';
+import moment = require("moment");
 
 @Component({
   selector: 'app-new-car-dialog',
@@ -81,12 +82,16 @@ export class NewReservationDialogComponent implements OnInit {
 
   public onSubmit(): void {
     if (this.newReservationForm.valid) {
-      const newCarFormValue = this.newReservationForm.value;
-      const newCar = newCarFormValue as Car;
-      newCar.classId = newCarFormValue.classId.id;
-      newCar.brandId = newCarFormValue.brandId.id;
-      newCar.typeId = newCarFormValue.typeId.id;
-      this._carsService.addCar(newCar).subscribe(result => { this._dialogRef.close(result); });
+      const newReservationForm = this.newReservationForm.value;
+      delete newReservationForm.classId;
+      const newReservation = newReservationForm as Reservation;
+      newReservation.carId = newReservationForm.carId.id;
+
+      newReservation.customerId = newReservationForm.customerId.id;
+      newReservation.reservationDate = moment().utc().toString();
+      newReservation.state = ReservationState.Pending;
+      console.log(newReservation);
+      this._reservationService.addReservation(newReservation).subscribe(result => { this._dialogRef.close(result); });
     } else {
       console.log('validating');
       this._validator.validateAllFormFields(this.newReservationForm);
