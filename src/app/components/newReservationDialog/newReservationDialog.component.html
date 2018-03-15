@@ -25,7 +25,7 @@
         <input matInput placeholder="Car" aria-label="Car" [matAutocomplete]="carsAuto" formControlName="carId">
         <mat-autocomplete #carsAuto="matAutocomplete" [displayWith]="displayCar">
           <mat-option *ngFor="let car of filteredCars()" [value]="car">
-            <span>{{ car.brandId }}</span> |
+            <span>{{ displayBrand(car.brandId) }}</span> |
             <small>{{ car.registrationYear }}$</small>
           </mat-option>
         </mat-autocomplete>

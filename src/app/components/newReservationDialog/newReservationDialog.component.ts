@@ -130,7 +130,11 @@ export class NewReservationDialogComponent implements OnInit {
   }
 
   public displayCar(obj: Car) {
-    return obj ? obj.brandId + ' ' + obj.registrationYear : '';
+    return obj ? this.displayBrand(obj.brandId) + ' ' + obj.registrationYear : '';
+  }
+
+  public displayBrand(id: number) {
+    return this.displayFn(this.carBrands.filter(b => b.id === id)[0]);
   }
 
   public displayCustomer(obj: Customer) {

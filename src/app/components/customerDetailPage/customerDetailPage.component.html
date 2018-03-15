@@ -1,24 +1,24 @@
-<div *ngIf="customer">
+<div *ngIf="car">
   <mat-card>
     <mat-card-content>
       <div class="row">
         <div class="col-md-2 col-xs-12">
-          <img [src]="getAvatar(customer)" alt="customer avatar" width="128" height="128">
-          <div class="contact-detail-box">
-            <div><mat-icon>perm_identity</mat-icon> <span>Customer-ID: {{customer.id}}</span></div>
+          <img [src]="getAvatar(car)" alt="customer avatar" width="128" height="128">
+          <div class="car-detail-box">
+            <div><mat-icon>perm_identity</mat-icon> <span>Customer-ID: {{car.id}}</span></div>
           </div>
         </div>
         <div class="col-md-10 col-xs-12">
-          <form class="customer-detail-form" [formGroup]="customerDetailForm">
+          <form class="car-detail-form" [formGroup]="carDetailForm">
             <mat-form-field>
               <input cdkFocusInitial matInput placeholder="firstname *" formControlName="firstName">
-              <mat-error *ngIf="customerDetailForm.hasError('required', 'firstName')">
+              <mat-error *ngIf="carDetailForm.hasError('required', 'firstName')">
                 Firstname is <strong>required</strong>
               </mat-error>
             </mat-form-field>
             <mat-form-field>
               <input matInput placeholder="lastname *" formControlName="lastName">
-              <mat-error *ngIf="customerDetailForm.hasError('required', 'lastName')">
+              <mat-error *ngIf="carDetailForm.hasError('required', 'lastName')">
                 Lastname is <strong>required</strong>
               </mat-error>
             </mat-form-field>
@@ -30,10 +30,10 @@
             <mat-form-field>
               <input matInput type="email" placeholder="e-mail *" formControlName="eMail">
               <span matSuffix><mat-icon>mail_outline</mat-icon></span>
-              <mat-error *ngIf="customerDetailForm.hasError('email', 'eMail') && !customerDetailForm.hasError('required', 'eMail')">
+              <mat-error *ngIf="carDetailForm.hasError('email', 'eMail') && !carDetailForm.hasError('required', 'eMail')">
                 Please enter a valid email address
               </mat-error>
-              <mat-error *ngIf="customerDetailForm.hasError('required', 'eMail')">
+              <mat-error *ngIf="carDetailForm.hasError('required', 'eMail')">
                 Email is <strong>required</strong>
               </mat-error>
             </mat-form-field>
@@ -47,11 +47,11 @@
     <mat-card-actions>
       <div class="row">
         <div class="col-xs start-xs">
-          <button mat-button [disabled]="!customerDetailForm.dirty" (click)="reset()">CANCEL</button>
-          <button mat-raised-button color="accent" [disabled]="!customerDetailForm.dirty" (click)="update()">SAVE</button>
+          <button mat-button [disabled]="!carDetailForm.dirty" (click)="reset()">CANCEL</button>
+          <button mat-raised-button color="accent" [disabled]="!carDetailForm.dirty" (click)="update()">SAVE</button>
         </div>
         <div class="col-xs end-xs">
-          <button mat-button color="warn" (click)="removeCustomer(customer)"><mat-icon>delete</mat-icon>DELETE</button>
+          <button mat-button color="warn" (click)="removeCar(car)"><mat-icon>delete</mat-icon>DELETE</button>
         </div>
       </div>
     </mat-card-actions>

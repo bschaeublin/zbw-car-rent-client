@@ -1,0 +1,79 @@
+<div *ngIf="car">
+  <mat-card>
+    <mat-card-content>
+      <div class="row">
+        <div class="col-md-2 col-xs-12">
+          <mat-icon class="detail-icon">directions_car</mat-icon>
+          <div class="car-detail-box">
+            <div><span>Car-ID: {{car.id}}</span></div>
+          </div>
+        </div>
+        <div class="col-md-10 col-xs-12">
+          <form class="car-detail-form" [formGroup]="carDetailForm">
+            <mat-form-field *ngIf="carBrands">
+              <input cdkFocusInitial matInput placeholder="Brand" aria-label="Brand" [matAutocomplete]="brandsAuto" formControlName="brandId">
+              <mat-autocomplete #brandsAuto="matAutocomplete" [displayWith]="displayBrand.bind(this)">
+                <mat-option *ngFor="let brand of filteredBrands | async" [value]="brand">
+                  <span>{{ brand.title }}</span>
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Type" aria-label="Type" [matAutocomplete]="typeAuto" formControlName="typeId">
+              <mat-autocomplete #typeAuto="matAutocomplete" [displayWith]="displayType.bind(this)">
+                <mat-option *ngFor="let type of filteredTypes | async" [value]="type">
+                  <span>{{ type.title }}</span>
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Class" aria-label="Class" [matAutocomplete]="classAuto" formControlName="classId">
+              <mat-autocomplete #classAuto="matAutocomplete" [displayWith]="displayClass.bind(this)">
+                <mat-option *ngFor="let cls of filteredClasses | async" [value]="cls">
+                  <span>{{ cls.title }}</span> |
+                  <small>{{ cls.cost }}$</small>
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput placeholder="Kilometers *" formControlName="kilometers">
+              <mat-error *ngIf="carDetailForm.hasError('required', ['kilometers'])">
+                Kilometers are <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput placeholder="HorsePower *" formControlName="horsePower">
+              <mat-error *ngIf="carDetailForm.hasError('required', ['horsePower'])">
+                HorsePower is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput placeholder="Year of registration *" formControlName="registrationYear">
+              <mat-error *ngIf="carDetailForm.hasError('required', ['registrationYear'])">
+                Year of registration is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+
+          </form>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="row">
+        <div class="col-xs start-xs">
+          <button mat-button [disabled]="!carDetailForm.dirty" (click)="reset()">CANCEL</button>
+          <button mat-raised-button color="accent" [disabled]="!carDetailForm.dirty" (click)="update()">SAVE</button>
+        </div>
+        <div class="col-xs end-xs">
+          <button mat-button color="warn" (click)="removeCar(car)"><mat-icon>delete</mat-icon>DELETE</button>
+        </div>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>
+

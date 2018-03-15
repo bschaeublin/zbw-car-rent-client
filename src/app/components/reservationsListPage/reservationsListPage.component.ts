@@ -132,8 +132,10 @@ export class ReservationsListPageComponent implements OnInit {
   public openDialog() {
     const dialogRef = this._dialog.open(NewReservationDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
-      this.reservations.push(result);
-      this._snackBar.open('added new car: ' + result, null, { duration: 3000 });
+      if (result) {
+        this.reservations.push(result);
+        this._snackBar.open('added new car: ' + result, null, { duration: 3000 });
+      }
     });
   }
 }

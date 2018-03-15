@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import {
-  AppComponent, CarsListPageComponent, CustomerDetailPageComponent, CustomerListPageComponent,
+  AppComponent, CarsListPageComponent, CarDetailPageComponent, CustomerListPageComponent,
   NewCustomerDialogComponent,
   NotFoundPageComponent, CarBrandSettingsComponent, NewCarDialogComponent, ReservationsListPageComponent
 } from './components';
@@ -21,14 +21,14 @@ import {MAT_DATE_LOCALE} from '@angular/material';
 const appRoutes: Routes = [
   {
     path: 'customers/:id',
-    component: CustomerDetailPageComponent },
+    component: CarDetailPageComponent },
   {
     path: 'customers',
     component: CustomerListPageComponent,
   },
   {
     path: 'cars/:id',
-    component: NotFoundPageComponent },
+    component: CarDetailPageComponent },
   {
     path: 'cars',
     component: CarsListPageComponent,

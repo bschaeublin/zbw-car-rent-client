@@ -1,5 +1,6 @@
 .car-detail-box {
   margin-top: 5px;
+  padding-left: 5px;
   span {
     vertical-align: super;
   }
@@ -9,4 +10,8 @@
   mat-form-field {
     width: 100%;
   }
+}
+
+.detail-icon {
+  font-size: 5em;
 }
