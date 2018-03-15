@@ -3,7 +3,7 @@
   <form class="new-car-form" [formGroup]="newReservationForm">
     <mat-form-field>
       <input cdkFocusInitial matInput placeholder="Customer" aria-label="Customer" [matAutocomplete]="customerAuto" formControlName="customerId">
-      <mat-autocomplete #customerAuto="matAutocomplete" [displayWith]="displayCustomer">
+      <mat-autocomplete #customerAuto="matAutocomplete" [displayWith]="displayCustomer.bind(this)">
         <mat-option *ngFor="let customer of filteredCustomers | async" [value]="customer">
           <span>{{ customer.firstName + ' '  + customer.lastName }}</span>
         </mat-option>
@@ -23,7 +23,7 @@
 
       <mat-form-field class="col-xs-12 col-md-6">
         <input matInput placeholder="Car" aria-label="Car" [matAutocomplete]="carsAuto" formControlName="carId">
-        <mat-autocomplete #carsAuto="matAutocomplete" [displayWith]="displayCar">
+        <mat-autocomplete #carsAuto="matAutocomplete" [displayWith]="displayCar.bind(this)">
           <mat-option *ngFor="let car of filteredCars()" [value]="car">
             <span>{{ displayBrand(car.brandId) }}</span> |
             <small>{{ car.registrationYear }}$</small>

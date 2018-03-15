@@ -88,7 +88,8 @@ export class NewReservationDialogComponent implements OnInit {
       newReservation.carId = newReservationForm.carId.id;
 
       newReservation.customerId = newReservationForm.customerId.id;
-      newReservation.reservationDate = moment().utc().toString();
+      newReservation.reservationDate = moment().toISOString();
+      newReservation.rentalDate = moment(newReservation.rentalDate).toISOString();
       newReservation.state = ReservationState.Pending;
       console.log(newReservation);
       this._reservationService.addReservation(newReservation).subscribe(result => { this._dialogRef.close(result); });
