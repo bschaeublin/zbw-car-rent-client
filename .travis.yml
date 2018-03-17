@@ -17,8 +17,13 @@ before_script:
 script:
   - ng build --prod
   - sonar-scanner
+
+before_deploy:
+  - cd dist
+  
 deploy:
   provider: azure_web_apps
+  skip_cleanup: true
   verbose: true
 
 notifications:
