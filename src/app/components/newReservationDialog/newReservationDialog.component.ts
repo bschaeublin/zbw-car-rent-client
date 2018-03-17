@@ -6,7 +6,7 @@ import {MatDialogRef} from '@angular/material';
 import {Observable} from 'rxjs/Observable';
 import {map, startWith} from 'rxjs/operators';
 import 'rxjs/add/observable/forkJoin';
-import moment = require("moment");
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-new-car-dialog',
