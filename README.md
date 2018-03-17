@@ -1,5 +1,7 @@
 # zbw-car-rent-client
 car rent project - client
+https://car-rent-client.azurewebsites.net
+
 - angular cli 1.6.5
 - material design
 
