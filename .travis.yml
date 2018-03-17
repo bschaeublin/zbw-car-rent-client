@@ -17,6 +17,9 @@ before_script:
 script:
   - ng build --prod
   - sonar-scanner
+deploy:
+  provider: azure_web_apps
+  verbose: true
 
 notifications:
   email:
