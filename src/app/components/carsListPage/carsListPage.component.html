@@ -1,7 +1,7 @@
 <div *ngIf="cars && cars.length > 0; else noentries">
   <mat-card *ngFor="let car of cars">
     <mat-card-header>
-        <img mat-card-avatar [src]="getAvatar(car)" alt="car avatar">
+      <mat-icon class="card-cars-icon" mat-card-avatar>directions_car</mat-icon>
       <mat-card-title class="customer-list-title"><span class="mat-typography">{{ carSettings.findBrand(car.brandId)?.title + ' (' + car.registrationYear  + ')'}}</span></mat-card-title>
         <mat-card-subtitle>{{ carSettings.findType(car.typeId)?.title }}</mat-card-subtitle>
     </mat-card-header>
@@ -16,6 +16,7 @@
     <mat-card-actions>
       <div class="row">
         <div class="col-xs-12">
+          <a mat-button color="primary" [routerLink]="'/cars/' + car.id">VIEW DETAIL</a>
           <button mat-button color="warn" (click)="removeCar(car)"><mat-icon>delete</mat-icon>DELETE</button>
         </div>
       </div>

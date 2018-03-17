@@ -1,0 +1,56 @@
+<h2 mat-dialog-title>New Reservation</h2>
+<mat-dialog-content>
+  <form class="new-car-form" [formGroup]="newReservationForm">
+    <mat-form-field>
+      <input cdkFocusInitial matInput placeholder="Customer" aria-label="Customer" [matAutocomplete]="customerAuto" formControlName="customerId">
+      <mat-autocomplete #customerAuto="matAutocomplete" [displayWith]="displayCustomer.bind(this)">
+        <mat-option *ngFor="let customer of filteredCustomers | async" [value]="customer">
+          <span>{{ customer.firstName + ' '  + customer.lastName }}</span>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <div class="row">
+      <mat-form-field class="col-xs-12 col-md-6">
+        <input matInput placeholder="Class" aria-label="Class" [matAutocomplete]="classAuto" formControlName="classId">
+        <mat-autocomplete #classAuto="matAutocomplete" [displayWith]="displayFn">
+          <mat-option *ngFor="let cls of filteredClasses | async" [value]="cls">
+            <span>{{ cls.title }}</span> |
+            <small>{{ cls.cost }}$</small>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field class="col-xs-12 col-md-6">
+        <input matInput placeholder="Car" aria-label="Car" [matAutocomplete]="carsAuto" formControlName="carId">
+        <mat-autocomplete #carsAuto="matAutocomplete" [displayWith]="displayCar.bind(this)">
+          <mat-option *ngFor="let car of filteredCars()" [value]="car">
+            <span>{{ displayBrand(car.brandId) }}</span> |
+            <small>{{ car.registrationYear }}$</small>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="RentalDate *" formControlName="rentalDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="newReservationForm.hasError('required', ['rentalDate'])">
+        RentalDate is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput  type="number" placeholder="Days *" formControlName="days" value="">
+      <mat-error *ngIf="newReservationForm.hasError('required', ['days'])">
+        Days are <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button (click)="onSubmit()" mat-button>Save</button>
+</mat-dialog-actions>

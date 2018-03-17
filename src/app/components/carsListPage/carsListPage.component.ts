@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {BreadCrumbService, ReservationService, SettingsService, UnicornService} from '../../services';
+import {BreadCrumbService, ReservationService, SettingsService} from '../../services';
 import {BreadCrumb, Car, Reservation} from '../../model';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {CarService} from '../../services';
 import {NewCarDialogComponent} from '../newCarDialog/newCarDialog.component';
 import {CarSettings} from '../../model/carSettings';
 import * as moment from 'moment';
-import {weekdays} from 'moment';
 
 @Component({
   selector: 'app-customer-list-page',
@@ -19,7 +18,6 @@ export class CarsListPageComponent implements OnInit {
   public reservations: Reservation[];
 
   constructor(private _carService: CarService,
-              private _gravatar: UnicornService,
               private _rss: ReservationService,
               private _dialog: MatDialog,
               private _crs: BreadCrumbService,
@@ -32,7 +30,6 @@ export class CarsListPageComponent implements OnInit {
 
   public ngOnInit(): void {
     this.reset();
-
   }
 
   public reset(): void {
@@ -43,10 +40,6 @@ export class CarsListPageComponent implements OnInit {
       });
       this._carService.getCars().subscribe(response => this.cars = response);
     });
-  }
-
-  public getAvatar(c: Car): string {
-    return this._gravatar.getAvatarFromString(c.id.toString(), 32);
   }
 
   public removeCar(c: Car): void {
@@ -98,8 +91,10 @@ export class CarsListPageComponent implements OnInit {
   public openDialog() {
     const dialogRef = this._dialog.open(NewCarDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
-      this.cars.push(result);
-      this._snackBar.open('added new car: ' + result.brandid, null, { duration: 3000 });
+      if (result) {
+        this.cars.push(result);
+        this._snackBar.open('added new car: ' + result.brandid, null, { duration: 3000 });
+      }
     });
   }
 }

@@ -14,6 +14,12 @@
   width: 300px;
 }
 
-.card-cars-icon {
-  font-size: 2em;
+.example-half-width {
+  width: 24% !important;
+}
+
+.new-car-form {
+  mat-form-field {
+    width: 100%;
+  }
 }

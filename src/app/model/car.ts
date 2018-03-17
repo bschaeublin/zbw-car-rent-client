@@ -6,4 +6,6 @@ export class Car {
   public kilometers: number;
   public horsePower: number;
   public registrationYear: number;
+
+  public displayName: string;
 }
