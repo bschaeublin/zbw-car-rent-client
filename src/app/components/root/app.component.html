@@ -12,7 +12,7 @@
 </mat-progress-bar>
 
 <mat-sidenav-container class="app-sidenav-container">
-  <mat-sidenav #sidenav mode="side" class="app-sidenav" [opened]="true">
+  <mat-sidenav #sidenav mode="side" class="app-sidenav" [opened]="sideNavOpened">
     <section class="mat-typography">
       <ul class="app-sidenav-items">
         <li><a [routerLink]="'customers'" [ngClass]="isRouteSelected('customers') ? 'selected' : ''"><mat-icon>supervisor_account</mat-icon><span>Customers</span></a></li>
