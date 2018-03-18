@@ -1,9 +1,10 @@
 # zbw-car-rent-client
 car rent project - client
-https://car-rent-client.azurewebsites.net
-
 - angular cli 1.6.5
 - material design
+
+# See it live on Azure (Master)
+https://car-rent-client.azurewebsites.net
 
 # Travis
 [![Build Status](https://travis-ci.org/bschaeublin/zbw-car-rent-client.svg?branch=develop)](https://travis-ci.org/bschaeublin/zbw-car-rent-client)
