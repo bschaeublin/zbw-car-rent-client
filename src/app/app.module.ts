@@ -4,7 +4,8 @@ import { NgModule } from '@angular/core';
 import {
   AppComponent, CarsListPageComponent, CarDetailPageComponent, CustomerListPageComponent,
   NewCustomerDialogComponent,
-  NotFoundPageComponent, CarBrandSettingsComponent, NewCarDialogComponent, ReservationsListPageComponent
+  NotFoundPageComponent, CarBrandSettingsComponent, NewCarDialogComponent, ReservationsListPageComponent,
+  CustomerDetailPageComponent, ReservationDetailPageComponent
 } from './components';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './modules/material/material.module';
@@ -21,7 +22,7 @@ import {MAT_DATE_LOCALE} from '@angular/material';
 const appRoutes: Routes = [
   {
     path: 'customers/:id',
-    component: CarDetailPageComponent },
+    component: CustomerDetailPageComponent },
   {
     path: 'customers',
     component: CustomerListPageComponent,
@@ -36,6 +37,10 @@ const appRoutes: Routes = [
   {
     path: 'reservations',
     component: ReservationsListPageComponent,
+  },
+  {
+    path: 'reservations/:id',
+    component: ReservationDetailPageComponent,
   },
   {
     path: 'settings',

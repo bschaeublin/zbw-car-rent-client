@@ -1,0 +1,20 @@
+.reservation-detail-box {
+  margin-top: 5px;
+  mat-icon {
+    font-size: 20px;
+  }
+  span {
+    vertical-align: super;
+    margin-left: 0px;
+  }
+}
+
+.reservation-detail-form {
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+.reservation-actions {
+  margin-top: 10px;
+}
