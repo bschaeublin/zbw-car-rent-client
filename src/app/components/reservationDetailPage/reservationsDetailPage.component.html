@@ -59,11 +59,11 @@
     </mat-card-content>
     <mat-card-actions>
       <div class="row">
-        <div class="col-xs start-xs">
+        <div class="col-xs-8 start-xs">
           <button mat-button [disabled]="!reservationDetailForm.dirty" (click)="reset()">CANCEL</button>
           <button mat-raised-button color="accent" [disabled]="!reservationDetailForm.dirty" (click)="update()">SAVE</button>
         </div>
-        <div class="col-xs end-xs">
+        <div class="col-xs-4 end-xs">
           <button mat-button color="warn" (click)="removeReservation(reservation)" *ngIf="reservation.state !== ReservationState.Contracted"><mat-icon>delete</mat-icon>DELETE</button>
         </div>
       </div>
