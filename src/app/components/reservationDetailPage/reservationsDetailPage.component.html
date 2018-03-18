@@ -1,0 +1,72 @@
+<div *ngIf="reservation">
+  <mat-card>
+    <mat-card-content>
+      <div class="row">
+        <div class="col-md-3 col-xs-12">
+          <div class="reservation-detail-box">
+            <div><mat-icon>create</mat-icon><span>{{ 'Created: ' + getReservationDate(reservation) }}</span></div>
+            <div><mat-icon>vpn_key</mat-icon> <span>ID: {{reservation.id}}</span></div>
+            <div><mat-icon>verified_user</mat-icon> <span>State: {{ getStateInfo(reservation)}}</span></div>
+            <div><mat-icon>attach_money</mat-icon><span>Costs: {{ calculatedCosts}} $</span></div>
+            <div class="reservation-actions mat-typography">
+              <button mat-raised-button color="accent" (click)="confirmReservation(reservation)" *ngIf="reservation.state === ReservationState.Pending">CONFIRM</button>
+              <button mat-raised-button color="accent" (click)="toRentalContract(reservation)" *ngIf="reservation.state === ReservationState.Reserved">CREATE CONTRACT</button>
+              <button mat-raised-button color="warn" (click)="removeContract(reservation)" *ngIf="reservation.state === ReservationState.Contracted">REMOVE CONTRACT</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-9 col-xs-12">
+          <form class="reservation-detail-form" [formGroup]="reservationDetailForm">
+
+            <mat-form-field *ngIf="customer">
+              <input cdkFocusInitial matInput placeholder="Customer" aria-label="Customer" [matAutocomplete]="customerAuto" formControlName="customerId">
+              <mat-autocomplete #customerAuto="matAutocomplete" [displayWith]="displayCustomer.bind(this)">
+                <mat-option [value]="customer">
+                  <span>{{ customer.firstName + ' '  + customer.lastName }}</span>
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="car && carSettings?.carBrands">
+              <input matInput placeholder="Car" aria-label="Car" [matAutocomplete]="carsAuto" formControlName="carId">
+              <mat-autocomplete #carsAuto="matAutocomplete" [displayWith]="displayCar.bind(this)">
+                <mat-option *ngFor="let car of filteredCars | async" [value]="car">
+                  <span>{{ displayBrand(car.brandId) }}</span> |
+                  <small>{{ car.registrationYear }}$</small>
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker" placeholder="RentalDate *" formControlName="rentalDate">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="reservationDetailForm.hasError('required', ['rentalDate'])">
+                RentalDate is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput  type="number" placeholder="Days *" formControlName="days" value="">
+              <mat-error *ngIf="reservationDetailForm.hasError('required', ['days'])">
+                Days are <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+
+          </form>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="row">
+        <div class="col-xs start-xs">
+          <button mat-button [disabled]="!reservationDetailForm.dirty" (click)="reset()">CANCEL</button>
+          <button mat-raised-button color="accent" [disabled]="!reservationDetailForm.dirty" (click)="update()">SAVE</button>
+        </div>
+        <div class="col-xs end-xs">
+          <button mat-button color="warn" (click)="removeReservation(reservation)" *ngIf="reservation.state !== ReservationState.Contracted"><mat-icon>delete</mat-icon>DELETE</button>
+        </div>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

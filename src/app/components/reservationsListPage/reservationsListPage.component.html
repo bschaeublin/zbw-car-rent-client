@@ -2,20 +2,22 @@
   <mat-card *ngFor="let res of reservations">
     <mat-card-header>
       <mat-card-title class="customer-list-title"><span class="mat-typography">{{ getRentalDate(res)}}</span></mat-card-title>
-        <mat-card-subtitle>{{ getReservationDate(res) }}</mat-card-subtitle>
+        <mat-card-subtitle>{{ 'Created ' + getReservationDate(res) }}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <div class="customer-list-detail">
-        <div><mat-icon>favorite_border</mat-icon> <span>Days: {{ res.days }}</span></div>
-        <div><mat-icon>straighten</mat-icon> <a [routerLink]="['/cars/' + res.carId]">Car: {{ getCarsInfo(res) }}</a></div>
-        <div><mat-icon>class</mat-icon> <a [routerLink]="['/customers/' + res.customerId]">Customer: {{ getCustomerInfo(res) }}</a></div>
-        <div><mat-icon>power</mat-icon> <span>State: {{ getStateInfo(res)}}</span></div>
+        <div><mat-icon>person</mat-icon> <a [routerLink]="['/customers/' + res.customerId]">Customer: {{ getCustomerInfo(res) }}</a></div>
+        <div><mat-icon>directions_car</mat-icon> <a [routerLink]="['/cars/' + res.carId]">Car: {{ getCarsInfo(res) }}</a></div>
+        <div><mat-icon>today</mat-icon> <span>Days: {{ res.days }}</span></div>
+        <div><mat-icon>verified_user</mat-icon> <span>State: {{ getStateInfo(res)}}</span></div>
+        <div><mat-icon>attach_money</mat-icon><span>Costs: {{ getCalculatedCosts(res)}} $</span></div>
       </div>
     </mat-card-content>
     <mat-card-actions>
       <div class="row">
         <div class="col-xs-12">
-          <button mat-button color="warn" (click)="removeReservation(res)"><mat-icon>delete</mat-icon>DELETE</button>
+          <a mat-button color="primary" [routerLink]="'/reservations/' + res.id">VIEW DETAIL</a>
+          <button mat-button color="warn" (click)="removeReservation(res)" *ngIf="res.state !== ReservationState.Contracted"><mat-icon>delete</mat-icon>DELETE</button>
         </div>
       </div>
     </mat-card-actions>

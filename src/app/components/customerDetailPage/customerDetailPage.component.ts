@@ -1,9 +1,10 @@
 import {Component, OnChanges, OnInit} from '@angular/core';
 import {BreadCrumbService, CustomerService, UnicornService, ValidationService} from '../../services';
 import {BreadCrumb, Customer} from '../../model';
-import {MatDialog} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-customer-detail-page',
@@ -25,6 +26,7 @@ export class CustomerDetailPageComponent implements OnInit, OnChanges {
               private _gravatar: UnicornService,
               private _dialog: MatDialog,
               private _validator: ValidationService,
+              private _snackBar: MatSnackBar,
               private _router: Router,
               private _crs: BreadCrumbService,
               private _route: ActivatedRoute) {
@@ -67,6 +69,10 @@ export class CustomerDetailPageComponent implements OnInit, OnChanges {
   public update(): void {
     if (this.customerDetailForm.valid) {
       this._customerService.updateCustomer(this.customerDetailForm.value).subscribe(() => {
+        this._snackBar.open(
+          'updated customer: ' + this.customerDetailForm.value.firstName + ' ' + this.customerDetailForm.value.lastName,
+          null,
+          { duration: 3000 });
         this._reload(this.customer.id);
       });
     } else {

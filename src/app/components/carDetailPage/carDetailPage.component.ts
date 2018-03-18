@@ -168,7 +168,7 @@ export class CarDetailPageComponent implements OnInit, OnChanges {
   }
 
   public displayCar(obj: Car) {
-    const brand = this.carBrands.filter(b => obj.brandId)[0];
+    const brand = this.carBrands.filter(b => b.id === obj.brandId)[0];
     return this.displayFn(brand) + ' (' +  this.car.registrationYear + ')';
   }
 

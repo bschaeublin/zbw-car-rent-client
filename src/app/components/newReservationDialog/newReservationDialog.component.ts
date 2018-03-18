@@ -21,15 +21,6 @@ export class NewReservationDialogComponent implements OnInit {
   public cars: Car[];
   public filteredClasses: Observable<CarClass[]>;
   public filteredCustomers: Observable<Customer[]>;
-  /*
-  *
-  * public carId: number;
-    public customerId: number;
-    public days: number;
-    public state: ReservationState;
-    public rentalDate: string;
-    public reservationDate: string;
-  */
 
   public carsControl = new FormControl(null, [Validators.required]);
   public newReservationForm: FormGroup = new FormGroup({

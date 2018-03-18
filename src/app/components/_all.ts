@@ -13,6 +13,7 @@ import {BreadCrumbBarComponent} from './breadcrumbBar/breadcrumbBar.component';
 import {ReservationsListPageComponent} from './reservationsListPage/reservationsListPage.component';
 import {NewReservationDialogComponent} from './newReservationDialog/newReservationDialog.component';
 import {CarDetailPageComponent} from './carDetailPage/carDetailPage.component';
+import {ReservationDetailPageComponent} from './reservationDetailPage/reservationsDetailPage.component';
 
 export const ALL_COMPONENTS = [
   AppComponent,
@@ -29,5 +30,6 @@ export const ALL_COMPONENTS = [
   NewReservationDialogComponent,
   ReservationsListPageComponent,
   CarClassSettingsComponent,
-  CarDetailPageComponent
+  CarDetailPageComponent,
+  ReservationDetailPageComponent,
 ];

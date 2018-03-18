@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BreadCrumbService, CustomerService, ReservationService, SettingsService, UnicornService} from '../../services';
-import {BreadCrumb, Car, Customer, Reservation, ReservationState} from '../../model';
+import {BreadCrumb, Car, Customer, RentalContract, Reservation, ReservationState} from '../../model';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {CarService} from '../../services';
 import {NewCarDialogComponent} from '../newCarDialog/newCarDialog.component';
@@ -8,6 +8,7 @@ import {CarSettings} from '../../model/carSettings';
 import * as moment from 'moment';
 import {weekdays} from 'moment';
 import {NewReservationDialogComponent} from '../newReservationDialog/newReservationDialog.component';
+import {ContractService} from '../../services/contract.service';
 
 @Component({
   selector: 'app-reservations-list-page',
@@ -17,11 +18,14 @@ import {NewReservationDialogComponent} from '../newReservationDialog/newReservat
 export class ReservationsListPageComponent implements OnInit {
   public reservations: Reservation[];
   public carSettings: CarSettings;
+  public ReservationState = ReservationState;
+
   public customers: Customer[];
   public cars: Car[];
 
   constructor(private _carService: CarService,
               private _gravatar: UnicornService,
+              private _contractService: ContractService,
               private _customerService: CustomerService,
               private _rss: ReservationService,
               private _dialog: MatDialog,
@@ -47,6 +51,20 @@ export class ReservationsListPageComponent implements OnInit {
         }
       );
     });
+  }
+
+  public getCalculatedCosts(reservation: Reservation): number {
+    if (!this.carSettings ||  !this.carSettings.carClasses) {
+      return 0;
+    }
+
+    const car = this.cars.filter(c => c.id === reservation.carId)[0];
+    if (!car) {
+      return 0;
+    }
+
+    const cls = this.carSettings.carClasses.filter(c => c.id === car.classId)[0];
+    return cls.cost * reservation.days;
   }
 
   public removeReservation(r: Reservation): void {
@@ -134,7 +152,7 @@ export class ReservationsListPageComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.reservations.push(result);
-        this._snackBar.open('added new car: ' + result, null, { duration: 3000 });
+        this._snackBar.open('added new reservation: ' + result, null, { duration: 3000 });
       }
     });
   }

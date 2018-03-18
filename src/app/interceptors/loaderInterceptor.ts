@@ -3,11 +3,15 @@ import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import {LoadingBarService} from '../services';
+import {MatSnackBar} from '@angular/material';
+import * as moment from 'moment';
+import {Error} from 'tslint/lib/error';
 
 @Injectable()
 export class LoaderInterceptor implements HttpInterceptor {
 
-  constructor(private _loadingService: LoadingBarService) {
+  constructor(private _loadingService: LoadingBarService,
+              private _snackBar: MatSnackBar) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -21,9 +25,10 @@ export class LoaderInterceptor implements HttpInterceptor {
         this._loadingService.complete();
       }
 
-    }, (err: any) => {
+    }, (err: Error) => {
       // if any error (not for just HttpResponse) we stop our loader bar
       this._loadingService.complete();
+      this._snackBar.open('Oops, an error ocurred. (' + err.message + ')', null, { duration: 3000 });
     });
   }
 
