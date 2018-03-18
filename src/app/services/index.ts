@@ -7,3 +7,4 @@ export * from './settings.service';
 export * from './breadcrumb.service';
 export * from './reservations.service';
 export * from './contract.service';
+export * from './seo.service';
