@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {Car, CarBrand, CarClass, CarType} from '../model';
+import {CarBrand, CarClass, CarType} from '../model';
 import {CarSettings} from '../model/carSettings';
 import {map} from 'rxjs/operators';
+import {forkJoin} from 'rxjs/observable/forkJoin';
 
 @Injectable()
 export class SettingsService {
@@ -17,7 +18,7 @@ export class SettingsService {
   }
 
   public getSettings(): Observable<CarSettings> {
-    return Observable.forkJoin(
+    return forkJoin(
       this.getClasses(),
       this.getTypes(),
       this.getBrands()

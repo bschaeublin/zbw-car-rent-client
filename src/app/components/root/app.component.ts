@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements AfterViewInit {
   public loading: boolean;
   public sideNavOpened = true;
   constructor(private _loadingBarService: LoadingBarService, private _router: Router) {
@@ -18,10 +18,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     this._loadingBarService.onComplete.subscribe(() => {
       setTimeout(() => { this.loading = false; }, 0);
     });
-  }
-
-  public ngOnInit() {
-    const width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
   }
 
   public ngAfterViewInit(): void {
