@@ -74,45 +74,6 @@ export class ReservationsListPageComponent implements OnInit {
     });
   }
 
-  public getReservationInfo(id: number) {
-    if (!this.reservations) {
-      return 'free';
-    }
-
-    const reservations = this.reservations.filter(r => r.carId === id).sort((a, b) => {
-      if (a.rentalDate > b.rentalDate) {
-        return 1;
-      }
-
-      if (a.rentalDate < b.rentalDate) {
-        return -1;
-      }
-
-      return 0;
-    });
-
-    const nextReservation = reservations[0];
-    if (nextReservation) {
-      const rentalDate = moment.utc(nextReservation.rentalDate);
-      const rentalToDate = rentalDate.clone().add(nextReservation.days, 'days');
-
-      if (rentalDate.isAfter(moment.utc(), 'day')) {
-        return 'Status: Free until ' + rentalDate.format('DD.MM.YYYY');
-      }
-      if (rentalDate.isSame(moment.utc(), 'day')) {
-        return 'Status: Booked today';
-      }
-
-      if (rentalDate.isBefore(moment.utc()) && rentalToDate.isSameOrAfter(moment())) {
-        return 'Status: Booked from ' + rentalDate.format('DD.MM.YYYY') + ' to ' + rentalToDate.format('DD.MM.YYYY');
-      }
-
-      return 'Status: Free, last booked ' + rentalDate.fromNow();
-    }
-
-    return 'Status: free';
-  }
-
   public getRentalDate(res: Reservation) {
     const from = moment.utc(res.rentalDate);
     const to = from.clone().add(res.days, 'days');
@@ -149,10 +110,10 @@ export class ReservationsListPageComponent implements OnInit {
 
   public openDialog() {
     const dialogRef = this._dialog.open(NewReservationDialogComponent);
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result: Reservation) => {
       if (result) {
         this.reservations.push(result);
-        this._snackBar.open('added new reservation: ' + result, null, { duration: 3000 });
+        this._snackBar.open('added new reservation: ' + moment(result.reservationDate).format('DD.mm.YYYY'), null, { duration: 3000 });
       }
     });
   }
