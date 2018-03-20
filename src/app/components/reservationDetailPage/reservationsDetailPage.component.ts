@@ -125,9 +125,9 @@ export class ReservationDetailPageComponent implements OnInit, OnChanges {
   public filterCars(brand: any): Car[] {
     if (brand instanceof String) {
       const brands = this.carSettings.carBrands.filter(b => b.title.toLowerCase().indexOf(brand.toLowerCase()) === 0);
-      const res: Car[] = [];
+      let res: Car[] = [];
       for (const b of brands) {
-        res.concat(this.cars.filter(c => c.brandId === b.id));
+        res = res.concat(this.cars.filter(c => c.brandId === b.id));
       }
       return res;
     }
